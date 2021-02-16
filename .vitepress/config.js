@@ -4,13 +4,13 @@ module.exports = {
   description: "NativeScript for Capacitor docs",
 
   head: [
-    ['link', { rel: 'stylesheet', href:'/styles.css' }]
+    ['link', { rel: 'stylesheet', href:'styles.css' }]
   ],
 
   themeConfig: {
     repo: "NativeScript/capacitor-docs",
     docsDir: ".",
-    logo: "/assets/images/nativescript-for-capacitor.png",
+    logo: "assets/images/nativescript-for-capacitor.png",
 
     editLinks: true,
     editLinkText: "Edit this page on GitHub",
