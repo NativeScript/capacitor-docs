@@ -1,0 +1,1 @@
+import{o as t,c as e,a as r}from"./app.4705c47d.js";const a='{"title":"","description":"","frontmatter":{},"relativePath":"README.md","lastUpdated":1613341741593}',n={},d=r("p",null,"npm run build .vitepress/dist/",-1);n.render=function(r,a,n,i,p,s){return t(),e("div",null,[d])};export default n;export{a as __pageData};

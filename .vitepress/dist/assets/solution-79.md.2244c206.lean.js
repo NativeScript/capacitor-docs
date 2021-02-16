@@ -1,0 +1,1 @@
+import{o as t,c as e,b as n}from"./app.4705c47d.js";const i='{"title":"Power Mode","description":"","frontmatter":{},"relativePath":"solution-79.md","lastUpdated":1613457771079}',o={},a=n('',6);o.render=function(n,i,o,r,s,l){return t(),e("div",null,[a])};export default o;export{i as __pageData};

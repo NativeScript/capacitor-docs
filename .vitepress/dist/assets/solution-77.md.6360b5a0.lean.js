@@ -1,0 +1,1 @@
+import{o as t,c as e,b as n}from"./app.4705c47d.js";const r='{"title":"Screen Brightness","description":"","frontmatter":{},"relativePath":"solution-77.md","lastUpdated":1613457722459}',i={},s=n('',6);i.render=function(n,r,i,a,o,c){return t(),e("div",null,[s])};export default i;export{r as __pageData};
