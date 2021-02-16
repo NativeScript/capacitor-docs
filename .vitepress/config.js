@@ -1,11 +1,16 @@
 module.exports = {
   lang: "en-US",
-  title: "NativeScript for Capacitor",
+  title: " ",
   description: "NativeScript for Capacitor docs",
+
+  head: [
+    ['link', { rel: 'stylesheet', href:'/styles.css' }]
+  ],
 
   themeConfig: {
     repo: "NativeScript/capacitor-docs",
     docsDir: ".",
+    logo: "/assets/images/nativescript-for-capacitor.png",
 
     editLinks: true,
     editLinkText: "Edit this page on GitHub",
@@ -20,12 +25,12 @@ module.exports = {
       {
         text: "Introduction",
         link: "/introduction",
-        activeMatch: "^/",
+        activeMatch: "^/introduction",
       },
       {
         text: "Docs",
         link: "/installation",
-        activeMatch: "^/",
+        activeMatch: "^/installation",
       },
     ],
 
@@ -47,6 +52,14 @@ function getSidebar() {
         { text: "Installation", link: "/installation" },
         { text: "Getting Started", link: "/getting-started" },
         { text: "Production Tips", link: "/production-tips" },
+      ],
+    },
+    {
+      text: "Solutions",
+      children: [
+        { text: "Capacitor Proposals", link: "/capacitor-proposals" },
+        { text: "Brightness - #77", link: "/solution-77" },
+        { text: "Power Mode - #79", link: "/solution-79" },
       ],
     },
   ];
