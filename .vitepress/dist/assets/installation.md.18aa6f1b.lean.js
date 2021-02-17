@@ -1,1 +1,0 @@
-import{o as e,c as t,b as a}from"./app.4705c47d.js";const i='{"title":"Installing @nativescript/capacitor","description":"","frontmatter":{},"headers":[{"level":2,"title":"Notes","slug":"notes"}],"relativePath":"installation.md","lastUpdated":1613341300820}',o={},n=a('',5);o.render=function(a,i,o,r,l,c){return e(),t("div",null,[n])};export default o;export{i as __pageData};

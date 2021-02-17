@@ -2,16 +2,16 @@
 
 https://github.com/capacitor-community/proposals/issues/77
 
-* `src/nativescript/index.ts`:
+### `index.ts`:
 
-```
+```typescript
 // Screen Brightness
 import './brightness';
 ```
 
-* `src/nativescript/brightness.ts`:
+### `brightness.ts`:
 
-```
+```typescript
 native.setScreenBrightness = (value: number) => {
   if (native.android) {
     const context = native.androidCapacitorActivity;

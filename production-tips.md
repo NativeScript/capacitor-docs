@@ -1,4 +1,4 @@
-# Production Tips/Tricks
+# Production Tips
 
 You can add 2 additional flags to your NativeScript build when preparing your app for production.
 
@@ -8,7 +8,7 @@ You can add 2 additional flags to your NativeScript build when preparing your ap
 
 You can either add these to the provide build script or create your own production npm scripts, for example in your `package.json` scripts:
 
-```
+```shell
 "build:nativescript:prod": "build-nativescript --env.uglify=true --env.production=true",
 "build:mobile:prod": "npm-run-all build build:nativescript:prod"
 ```

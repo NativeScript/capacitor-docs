@@ -5,8 +5,8 @@ tagline: The native platform at your fingertips.
 actionText: Become Empowered
 actionLink: /introduction
 features:
-- title: Introduction
-  details: A brief intro to NativeScript, it's performance and stability.
+- title: Explanations
+  details: A look at what this is all about and how to use it.
   # context:
   #   someHTML: <a href="/introduction">Introduction</a>
 - title: Getting Started

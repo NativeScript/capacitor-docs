@@ -1,7 +1,7 @@
 module.exports = {
   lang: "en-US",
   title: " ",
-  description: "NativeScript for Capacitor docs",
+  description: "NativeScript for Capacitor",
 
   head: [
     ['link', { rel: 'stylesheet', href:'styles.css' }]
@@ -23,14 +23,28 @@ module.exports = {
 
     nav: [
       {
+        text: "v1.0.0-beta.0",
+        link: "#"
+      },
+      {
         text: "Introduction",
         link: "/introduction",
-        activeMatch: "^/introduction",
+        activeMatch: "^/(?!installation|explaining-the-examples|production-tips|capacitor-proposals|solution-77|solution-79)",
+      },
+      {
+        text: "Setup",
+        link: "/installation",
+        activeMatch: "^/(?!introduction|explaining-the-examples|production-tips|capacitor-proposals|solution-77|solution-79)",
       },
       {
         text: "Docs",
-        link: "/installation",
-        activeMatch: "^/installation",
+        link: "/explaining-the-examples",
+        activeMatch: "^/(?!installation|introduction|explaining-the-examples|capacitor-proposals|solution-77|solution-79)",
+      },
+      {
+        text: "Solutions",
+        link: "/capacitor-proposals",
+        activeMatch: "^/capacitor-proposals",
       },
     ],
 
@@ -47,10 +61,31 @@ function getSidebar() {
       link: "/introduction"
     },
     {
-      text: "Docs",
+      text: "Setup",
       children: [
         { text: "Installation", link: "/installation" },
         { text: "Getting Started", link: "/getting-started" },
+      ],
+    },
+    {
+      text: "Docs",
+      children: [
+        { text: "Examples", link: "/explaining-the-examples" },
+        { 
+          text: "@nativescript/capacitor", 
+          children: [
+            { text: "What is 'native'?", link: "/what-is-native" },
+          ]
+        },
+        { 
+          text: "@nativescript/capacitor/bridge", 
+          children: [
+            { text: "What is the 'bridge'?", link: "/what-is-the-bridge" },
+            { text: "API Reference", link: "/bridge-api" },
+          ]
+        },
+        
+        { text: "custom-native-api.d.ts", link: "/custom-native-api" },
         { text: "Production Tips", link: "/production-tips" },
       ],
     },

@@ -1,0 +1,1 @@
+import{o as t,c as o,b as n}from"./app.0aaa57e5.js";const e='{"title":"Production Tips","description":"","frontmatter":{},"relativePath":"production-tips.md","lastUpdated":1613522705297}',i={},a=n('',5);i.render=function(n,e,i,s,p,r){return t(),o("div",null,[a])};export default i;export{e as __pageData};

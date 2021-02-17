@@ -2,16 +2,16 @@
 
 https://github.com/capacitor-community/proposals/issues/79
 
-- `src/nativescript/index.ts`:
+### `index.ts`:
 
-```
+```typescript
 // Power Mode
 import './power-mode';
 ```
 
-- `src/nativescript/power-mode.ts`:
+### `power-mode.ts`:
 
-```
+```typescript
 let isListening = false;
 let listener;
 let listenerCallback;
