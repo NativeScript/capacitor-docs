@@ -17,7 +17,7 @@ native.dreamBig = () => {
 };
 ```
 
-This can be used inside your Ionic web codebase with the following:
+Usage in your Ionic web codebase:
 
 ```typescript
 import { native } from '@nativescript/capacitor';
@@ -67,7 +67,7 @@ native.openNativeModalView = () => {
 };
 ```
 
-This can be used inside your Ionic web codebase with the following:
+Usage in your Ionic web codebase:
 
 ```typescript
 import { native } from '@nativescript/capacitor';

@@ -125,3 +125,32 @@ const uniqueId = () => {
   return '_' + Math.random().toString(36).substr(2, 9);
 };
 ```
+
+## androidBroadcastReceiverRegister
+
+* `androidBroadcastReceiverRegister(intentFilter: string, onReceiveCallback: (context: android.content.Context, intent: android.content.Intent) => void): void`: Register an Android BroadcastReceiver.
+
+Learn more [in Android developer docs](https://developer.android.com/guide/components/broadcasts) as well as [the BroadcastReceiver api docs](https://developer.android.com/reference/android/content/BroadcastReceiver).
+
+#### Example usage:
+
+```typescript
+const intentFilter = "android.os.action.POWER_SAVE_MODE_CHANGED";
+androidBroadcastReceiverRegister(intentFilter, (context, intent) => {
+  const manager: android.os.PowerManager = native.androidCapacitorActivity.getSystemService(
+    android.content.Context.POWER_SERVICE
+  );
+  console.log(`Power Save Mode is ${manager.isPowerSaveMode() ? 'enabled' : 'disabled'}`);
+});
+```
+
+## androidBroadcastReceiverUnRegister
+
+* `androidBroadcastReceiverUnRegister(intentFilter: string): void`: Stop receiving broadcasts for the provided intent filter.
+
+#### Example usage:
+
+```typescript
+const intentFilter = "android.os.action.POWER_SAVE_MODE_CHANGED";
+androidBroadcastReceiverUnRegister(intentFilter);
+```
