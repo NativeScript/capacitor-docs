@@ -22,7 +22,7 @@ Usage in your Ionic web codebase:
 ```typescript
 import { native } from '@nativescript/capacitor';
 
-native.dreamBig().get(v => {
+native.dreamBig().value.then(v => {
   console.log(v); // Dream big!
 });
 ```
