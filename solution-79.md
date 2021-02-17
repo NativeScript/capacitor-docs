@@ -6,7 +6,7 @@ https://github.com/capacitor-community/proposals/issues/79
 
 ```typescript
 // Power Mode
-import './power-mode';
+import "./power-mode";
 ```
 
 ### `power-mode.ts`:
@@ -23,7 +23,7 @@ let observer;
 
 native.togglePowerModeListener = (callback?: (isEnabled: boolean) => void) => {
   clientCallback = callback;
-  if (native.android) {
+  if (native.isAndroid) {
     const action = "android.os.action.POWER_SAVE_MODE_CHANGED";
     if (!isListening) {
       isListening = true;
@@ -60,7 +60,7 @@ native.togglePowerModeListener = (callback?: (isEnabled: boolean) => void) => {
 };
 
 native.isInLowPowerMode = () => {
-  if (native.android) {
+  if (native.isAndroid) {
     const manager: android.os.PowerManager = native.androidCapacitorActivity.getSystemService(
       android.content.Context.POWER_SERVICE
     );
@@ -72,5 +72,4 @@ native.isInLowPowerMode = () => {
   }
   return false;
 };
-
 ```

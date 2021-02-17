@@ -40,7 +40,7 @@ This file allows you to organize various native helpers in your own folder struc
 
 ## Isolated bundle
 
-The `src/nativescript` area of your codebase is completely encapsulated and isolated from the rest of your web codebase. This means you are free to go wild with all sorts of native platform behavior throughout your Ionic application with confidence that the `native` object is only **active** when running on the native platform. It is bundled on it's own completely separate from your web build allowing it to operate purely as an additive power helper to your web app when running via Capacitor.
+The `src/nativescript` area of your codebase is completely isolated from the rest of your web codebase. This means you are free to go wild with all sorts of native platform behavior throughout your Ionic application with confidence that the `native` object is only **active** when running on the native platform. It is bundled on it's own completely separate from your web build allowing it to operate purely as an additive power helper to your web app when running via Capacitor.
 
 [Learn more about how to optimize this bundle for production here](production-tips)
 

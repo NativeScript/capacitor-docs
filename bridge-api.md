@@ -4,14 +4,16 @@ The bridge is fundamental to NativeScript for Capacitor and also exposes a few u
 
 ## iosRootViewController
 
-* `iosRootViewController()`: The root view controller of your Capacitor app.
+The root view controller of your Capacitor app (or topmost presenting controller if using in context of an existing modal).
+
+- `iosRootViewController()`
 
 A helper that you, yourself, could write inside `src/nativescript` on your own. We provide it as a convenience because it is so handy and often used.
 
 #### Example usage:
 
 ```typescript
-import { iosRootViewController } from '@nativescript/capacitor/bridge';
+import { iosRootViewController } from "@nativescript/capacitor/bridge";
 
 const vc = UIViewController.alloc().init();
 vc.view.backgroundColor = UIColor.blueColor;
@@ -22,8 +24,8 @@ The source of the helper:
 
 ```typescript
 export const iosRootViewController = () => {
-  if (global.android) {
-    console.log('iosRootViewController is iOS only.');
+  if (native.isAndroid) {
+    console.log("iosRootViewController is iOS only.");
   } else {
     const app = UIApplication.sharedApplication;
     const win =
@@ -40,7 +42,9 @@ export const iosRootViewController = () => {
 
 ## androidCreateDialog
 
-* `androidCreateDialog(view: () => android.view.View, id?: string)`: Create Android fragment dialogs on the fly.
+Create Android fragment dialogs on the fly.
+
+- `androidCreateDialog(view: () => android.view.View, id?: string)`
 
 This method is another one that you, yourself, could write inside `src/nativescript`. It's another handy and convenient utility which can be used often for various native ui blending.
 
@@ -55,7 +59,7 @@ androidCreateDialog(() => {
   layout.setOrientation(android.widget.LinearLayout.VERTICAL);
 
   const btn = new android.widget.Button(activity);
-  btn.setText('Ionic');
+  btn.setText("Ionic");
   layout.addView(btn);
 
   return layout;
@@ -67,7 +71,7 @@ The source of the helper:
 ```typescript
 let DialogImpl;
 let DialogFragmentImpl;
-if (global.android) {
+if (native.isAndroid) {
   @NativeClass()
   class DialogImplClass extends android.app.Dialog {
     constructor(fragment, context, themeResId) {
@@ -82,10 +86,7 @@ if (global.android) {
   class DialogFragmentImplClass extends androidx.fragment.app.DialogFragment {
     view: () => android.view.View;
     id: string;
-    constructor(
-      view: () => android.view.View,
-      id?: string,
-    ) {
+    constructor(view: () => android.view.View, id?: string) {
       super();
       this.view = view;
       this.id = id;
@@ -111,7 +112,7 @@ if (global.android) {
 
 export const androidCreateDialog = (
   view: () => android.view.View,
-  id?: string,
+  id?: string
 ) => {
   const df = new DialogFragmentImpl(view, id);
   const fragmentManager = (<any>(
@@ -122,13 +123,15 @@ export const androidCreateDialog = (
 
 // general internal utility
 const uniqueId = () => {
-  return '_' + Math.random().toString(36).substr(2, 9);
+  return "_" + Math.random().toString(36).substr(2, 9);
 };
 ```
 
 ## androidBroadcastReceiverRegister
 
-* `androidBroadcastReceiverRegister(intentFilter: string, onReceiveCallback: (context: android.content.Context, intent: android.content.Intent) => void): void`: Register an Android BroadcastReceiver.
+Register an Android BroadcastReceiver.
+
+- `androidBroadcastReceiverRegister(intentFilter: string, onReceiveCallback: (context: android.content.Context, intent: android.content.Intent) => void): void`
 
 Learn more [in Android developer docs](https://developer.android.com/guide/components/broadcasts) as well as [the BroadcastReceiver api docs](https://developer.android.com/reference/android/content/BroadcastReceiver).
 
@@ -140,17 +143,110 @@ androidBroadcastReceiverRegister(intentFilter, (context, intent) => {
   const manager: android.os.PowerManager = native.androidCapacitorActivity.getSystemService(
     android.content.Context.POWER_SERVICE
   );
-  console.log(`Power Save Mode is ${manager.isPowerSaveMode() ? 'enabled' : 'disabled'}`);
+  console.log(
+    `Power Save Mode is ${manager.isPowerSaveMode() ? "enabled" : "disabled"}`
+  );
 });
 ```
 
 ## androidBroadcastReceiverUnRegister
 
-* `androidBroadcastReceiverUnRegister(intentFilter: string): void`: Stop receiving broadcasts for the provided intent filter.
+Stop receiving broadcasts for the provided intent filter.
+
+- `androidBroadcastReceiverUnRegister(intentFilter: string): void`
 
 #### Example usage:
 
 ```typescript
 const intentFilter = "android.os.action.POWER_SAVE_MODE_CHANGED";
 androidBroadcastReceiverUnRegister(intentFilter);
+```
+
+Both BroadcastReceiver utilities are also things you could write yourself but we provide as a convenience.
+
+The source of these helpers:
+
+```typescript
+let androidBroadcastReceiverClass;
+let androidRegisteredReceivers: {
+  [key: string]: android.content.BroadcastReceiver;
+};
+
+function ensureBroadCastReceiverClass() {
+  if (androidBroadcastReceiverClass) {
+    return;
+  }
+
+  @NativeClass
+  class BroadcastReceiver extends android.content.BroadcastReceiver {
+    private _onReceiveCallback: (
+      context: android.content.Context,
+      intent: android.content.Intent
+    ) => void;
+
+    constructor(
+      onReceiveCallback: (
+        context: android.content.Context,
+        intent: android.content.Intent
+      ) => void
+    ) {
+      super();
+      this._onReceiveCallback = onReceiveCallback;
+
+      return global.__native(this);
+    }
+
+    public onReceive(
+      context: android.content.Context,
+      intent: android.content.Intent
+    ) {
+      if (this._onReceiveCallback) {
+        this._onReceiveCallback(context, intent);
+      }
+    }
+  }
+
+  androidBroadcastReceiverClass = BroadcastReceiver;
+}
+
+export const androidBroadcastReceiverRegister = (
+  intentFilter: string,
+  onReceiveCallback: (
+    context: android.content.Context,
+    intent: android.content.Intent
+  ) => void
+): void => {
+  ensureBroadCastReceiverClass();
+  const registerFunc = (context: android.content.Context) => {
+    const receiver: android.content.BroadcastReceiver = new androidBroadcastReceiverClass(
+      onReceiveCallback
+    );
+    context.registerReceiver(
+      receiver,
+      new android.content.IntentFilter(intentFilter)
+    );
+    if (!androidRegisteredReceivers) {
+      androidRegisteredReceivers = {};
+    }
+    androidRegisteredReceivers[intentFilter] = receiver;
+  };
+
+  if (global.androidCapacitorActivity) {
+    registerFunc(global.androidCapacitorActivity);
+  }
+};
+
+export const androidBroadcastReceiverUnRegister = (
+  intentFilter: string
+): void => {
+  if (!androidRegisteredReceivers) {
+    androidRegisteredReceivers = {};
+  }
+  const receiver = androidRegisteredReceivers[intentFilter];
+  if (receiver) {
+    global.androidCapacitorActivity.unregisterReceiver(receiver);
+    androidRegisteredReceivers[intentFilter] = undefined;
+    delete androidRegisteredReceivers[intentFilter];
+  }
+};
 ```

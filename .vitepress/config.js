@@ -85,8 +85,13 @@ function getSidebar() {
             { text: "API Reference", link: "/bridge-api" },
           ]
         },
-        
-        { text: "custom-native-api.d.ts", link: "/custom-native-api" },
+        { 
+          text: "Creating your own helpers", 
+          children: [
+            { text: "What is native-custom.d.ts?", link: "/native-custom" },
+            { text: "Custom helpers vs direct native?", link: "/custom-v-direct" },
+          ]
+        },
         { text: "Production Tips", link: "/production-tips" },
       ],
     },
@@ -94,6 +99,7 @@ function getSidebar() {
       text: "Solutions",
       children: [
         { text: "Capacitor Proposals", link: "/capacitor-proposals" },
+        { text: "Swag Contest!", link: "/swag-contest" },
         { text: "Brightness - #77", link: "/solution-77" },
         { text: "Power Mode - #79", link: "/solution-79" },
       ],

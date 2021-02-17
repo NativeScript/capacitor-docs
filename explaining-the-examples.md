@@ -9,7 +9,7 @@ An example showing how to return a native value from your platform.
 ```typescript
 native.dreamBig = () => {
   const message = 'Dream big!';
-  if (native.android) {
+  if (native.isAndroid) {
     return new java.lang.String(message);
   } else {
     return NSString.alloc().initWithString(message);
@@ -33,7 +33,7 @@ An example showing how to do some native ui blending to open a purely native pla
 
 ```typescript
 native.openNativeModalView = () => {
-  if (native.android) {
+  if (native.isAndroid) {
     androidCreateDialog(() => {
       const activity = native.androidCapacitorActivity;
 
