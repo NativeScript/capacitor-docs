@@ -1,1 +1,0 @@
-import{o as a,c as n,b as s}from"./app.0aaa57e5.js";const t='{"title":"custom-native-api.d.ts","description":"","frontmatter":{},"relativePath":"custom-native-api.md","lastUpdated":1613522705424}',e={},o=s('',4);e.render=function(s,t,e,p,c,i){return a(),n("div",null,[o])};export default e;export{t as __pageData};

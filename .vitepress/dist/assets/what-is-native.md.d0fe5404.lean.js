@@ -1,1 +1,0 @@
-import{o as a,c as n,b as s}from"./app.0aaa57e5.js";const e='{"title":"What is \'native\'?","description":"","frontmatter":{},"headers":[{"level":2,"title":"Quick access","slug":"quick-access"}],"relativePath":"what-is-native.md","lastUpdated":1613522705297}',t={},o=s('',11);t.render=function(s,e,t,p,c,i){return a(),n("div",null,[o])};export default t;export{e as __pageData};
