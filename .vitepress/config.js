@@ -7,14 +7,14 @@ module.exports = {
     ['link', { rel: 'stylesheet', href: 'styles.css' }],
 
     // SEO
-    ['meta', { property: 'og:image', content: "https://www.nativescript.org/assets/ns-logo_share_600x315.png" }],
+    ['meta', { property: 'og:image', content: "/assets/images/og_banner.png" }],
 
     // SEO:twitter
     ['meta', { property: 'twitter:account_id', content: "44608081" }],
-    ['meta', { property: 'twitter:site', content: "@nativescript" }],
-    ['meta', { property: 'twitter:creator', content: "@nativescript" }],
-    ['meta', { property: 'twitter:card', content: "summary_large_image" }],
-    ['meta', { property: 'twitter:image', content: "https://www.nativescript.org/assets/ns-logo_share_600x315.png" }],
+    ['meta', { name: 'twitter:site', content: "@nativescript" }],
+    ['meta', { name: 'twitter:creator', content: "@nativescript" }],
+    ['meta', { name: 'twitter:card', content: "summary_large_image" }],
+    ['meta', { name: 'twitter:image', content: "/assets/images/og_banner.png" }],
   ],
 
   themeConfig: {
