@@ -1,6 +1,6 @@
 module.exports = {
   lang: "en-US",
-  title: " ",
+  title: "NativeScript Capacitor",
   description: "NativeScript for Capacitor",
 
   head: [
@@ -24,27 +24,28 @@ module.exports = {
     nav: [
       {
         text: "v1.0.0-beta.0",
-        link: "#"
+        link: "#",
+        activeMatch: '^nomatch$'
       },
       {
         text: "Introduction",
         link: "/introduction",
-        activeMatch: "^/(?!installation|explaining-the-examples|production-tips|capacitor-proposals|solution-77|solution-79)",
+        activeMatch: "^/introduction",
       },
       {
         text: "Setup",
         link: "/installation",
-        activeMatch: "^/(?!introduction|explaining-the-examples|production-tips|capacitor-proposals|solution-77|solution-79)",
+        activeMatch: "^/(installation|getting-started)",
       },
       {
         text: "Docs",
         link: "/explaining-the-examples",
-        activeMatch: "^/(?!installation|introduction|explaining-the-examples|capacitor-proposals|solution-77|solution-79)",
+        activeMatch: "^/(?!installation|introduction|getting-started|capacitor-proposals|solution-)",
       },
       {
         text: "Solutions",
         link: "/capacitor-proposals",
-        activeMatch: "^/capacitor-proposals",
+        activeMatch: "^/(capacitor-proposals|solution-)",
       },
     ],
 
