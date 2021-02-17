@@ -4,7 +4,7 @@ module.exports = {
   description: "NativeScript for Capacitor",
 
   head: [
-    ['link', { rel: 'stylesheet', href:'styles.css' }]
+    ['link', { rel: 'stylesheet', href: 'styles.css' }]
   ],
 
   themeConfig: {
