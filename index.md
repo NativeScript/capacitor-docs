@@ -6,7 +6,7 @@ actionText: Become Empowered
 actionLink: /introduction
 features:
 - title: Explore
-  details: Let's explore how this integration works what's available.
+  details: Let's explore how this integration works and what's available.
   # context:
   #   someHTML: <a href="/introduction">Introduction</a>
 - title: Getting Started
