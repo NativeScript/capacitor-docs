@@ -5,7 +5,16 @@ module.exports = {
 
   head: [
     ['link', { rel: 'stylesheet', href: 'styles.css' }],
-    ['meta', { property: 'og:image', content: "https://www.nativescript.org/assets/ns-logo_share_600x315.png" }]
+
+    // SEO
+    ['meta', { property: 'og:image', content: "https://www.nativescript.org/assets/ns-logo_share_600x315.png" }],
+
+    // SEO:twitter
+    ['meta', { property: 'twitter:account_id', content: "44608081" }],
+    ['meta', { property: 'twitter:site', content: "@nativescript" }],
+    ['meta', { property: 'twitter:creator', content: "@nativescript" }],
+    ['meta', { property: 'twitter:card', content: "summary_large_image" }],
+    ['meta', { property: 'twitter:image', content: "https://www.nativescript.org/assets/ns-logo_share_600x315.png" }],
   ],
 
   themeConfig: {
