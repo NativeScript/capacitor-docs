@@ -7,14 +7,19 @@ module.exports = {
     ['link', { rel: 'stylesheet', href: 'styles.css' }],
 
     // SEO
-    ['meta', { property: 'og:image', content: "/assets/images/og_banner.png" }],
+    ['meta', { property: 'og:image', content: "https://capacitor.nativescript.org/assets/images/og_banner.png" }],
+    ['meta', { name: 'og:title', content: "NativeScript for Capacitor" }],
+    ['meta', { name: 'og:url', content: "https://capacitor.nativescript.org/" }],
+    ['meta', { name: 'og:site_name', content: "capacitor.nativescript.org" }],
 
     // SEO:twitter
     ['meta', { property: 'twitter:account_id', content: "44608081" }],
+    ['meta', { name: 'twitter:title', content: "NativeScript for Capacitor" }],
+    ['meta', { name: 'twitter:url', content: "https://capacitor.nativescript.org/" }],
     ['meta', { name: 'twitter:site', content: "@nativescript" }],
     ['meta', { name: 'twitter:creator', content: "@nativescript" }],
     ['meta', { name: 'twitter:card', content: "summary_large_image" }],
-    ['meta', { name: 'twitter:image', content: "/assets/images/og_banner.png" }],
+    ['meta', { name: 'twitter:image', content: "https://capacitor.nativescript.org/assets/images/og_banner.png" }],
   ],
 
   themeConfig: {
