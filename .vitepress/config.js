@@ -4,7 +4,8 @@ module.exports = {
   description: "NativeScript for Capacitor",
 
   head: [
-    ['link', { rel: 'stylesheet', href: 'styles.css' }]
+    ['link', { rel: 'stylesheet', href: 'styles.css' }],
+    ['meta', { property: 'og:image', content: "https://www.nativescript.org/assets/ns-logo_share_600x315.png" }]
   ],
 
   themeConfig: {
