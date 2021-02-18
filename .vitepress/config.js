@@ -107,7 +107,13 @@ function getSidebar() {
             { text: "Custom helpers vs direct native?", link: "/custom-v-direct" },
           ]
         },
-        { text: "Production Tips", link: "/production-tips" },
+        { 
+          text: "Building", 
+          children: [
+            { text: "Using build:mobile", link: "/using-build-mobile" },
+            { text: "Production Tips", link: "/production-tips" },
+          ]
+        }
       ],
     },
     {
