@@ -73,3 +73,13 @@ native.isInLowPowerMode = () => {
   return false;
 };
 ```
+
+Usage in your Ionic web codebase:
+
+```typescript
+import { native } from '@nativescript/capacitor';
+
+native.togglePowerModeListener((isEnabled: boolean) => {
+  console.log("Power Mode changed:", isEnabled);
+});
+```

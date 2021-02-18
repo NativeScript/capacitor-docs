@@ -44,3 +44,11 @@ native.setScreenBrightness = (value: number) => {
   }
 };
 ```
+
+Usage in your Ionic web codebase:
+
+```typescript
+import { native } from '@nativescript/capacitor';
+
+native.setScreenBrightness(.8);
+```
