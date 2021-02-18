@@ -2,7 +2,7 @@
 
 Yeah yeah, I already know, [take me to the Installation Guide!](installation.md)
 
-NOTE: This for Capacitor 3 which is in beta as well.
+NOTE: This is for Capacitor 3 which is in beta as well.
 
 ## What is NativeScript?
 
