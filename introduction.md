@@ -2,6 +2,8 @@
 
 Yeah yeah, I already know, [take me to the Installation Guide!](installation.md)
 
+NOTE: This for Capacitor 3 which is in beta as well.
+
 ## What is NativeScript?
 
 NativeScript enables direct native platform API usage from JavaScript.
