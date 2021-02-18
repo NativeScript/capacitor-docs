@@ -113,6 +113,12 @@ function getSidebar() {
             { text: "Using build:mobile", link: "/using-build-mobile" },
             { text: "Production Tips", link: "/production-tips" },
           ]
+        },
+        { 
+          text: "Uninstall", 
+          children: [
+            { text: "npm uninstall", link: "/npm-uninstall" }
+          ]
         }
       ],
     },
