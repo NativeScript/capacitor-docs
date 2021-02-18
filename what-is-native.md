@@ -29,3 +29,9 @@ native.UIScreen.mainScreen.brightness.get(value => {
 }); 
 ```
 
+And if you want to set the brightness:
+
+```typescript
+native.UIScreen.mainScreen.brightness.set(.8); 
+```
+
