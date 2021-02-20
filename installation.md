@@ -8,9 +8,29 @@
 
 ```
 npm install @capacitor/cli@next @capacitor/core@next @capacitor/android@next @capacitor/ios@next
+
+// build at least once before adding platforms
+npm run build 
+
+npx cap add android
+npx cap add ios
+
+npx cap sync
 ```
 
 3. `npm i @nativescript/capacitor`
+
+You can now make changes to anything in `src/nativescript`. 
+
+Then import the `native` object with `import { native } from '@nativescript/capacitor';` into your Ionic web codebase to access it all.
+
+```
+// After making changes anywhere, build the latest of your web *and* nativescript changes with:
+npm run build:mobile
+
+// Then sync with capacitor before running on iOS or Android
+npx cap sync
+```
 
 4. Enjoy 🎉
 
