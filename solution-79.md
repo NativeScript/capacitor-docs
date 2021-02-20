@@ -2,14 +2,14 @@
 
 https://github.com/capacitor-community/proposals/issues/79
 
-### `index.ts`:
+### `src/nativescript/index.ts`:
 
 ```typescript
 // Power Mode
 import "./power-mode";
 ```
 
-### `power-mode.ts`:
+### `src/nativescript/power-mode.ts`:
 
 ```typescript
 import {

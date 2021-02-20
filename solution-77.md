@@ -2,14 +2,14 @@
 
 https://github.com/capacitor-community/proposals/issues/77
 
-### `index.ts`:
+### `src/nativescript/index.ts`:
 
 ```typescript
 // Screen Brightness
 import "./brightness";
 ```
 
-### `brightness.ts`:
+### `src/nativescript/brightness.ts`:
 
 ```typescript
 native.setScreenBrightness = (value: number) => {
