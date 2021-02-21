@@ -45,7 +45,22 @@ native.setScreenBrightness = (value: number) => {
 };
 ```
 
-Usage in your Ionic web codebase:
+## Usage in your Ionic web codebase:
+
+Provide strong type checking for this new helper by modifying the following:
+
+### `src/native-custom.d.ts`
+
+```typescript
+/**
+ * Define your own strongly typed native helpers here.
+ */
+export interface nativeCustom {
+  setScreenBrightness: (value: number) => void;
+}
+```
+
+Now you can use it anywhere in your Ionic web codebase with the following:
 
 ```typescript
 import { native } from '@nativescript/capacitor';
