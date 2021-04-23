@@ -1,31 +1,6 @@
 ## Explaining the examples
 
-The installation includes 2 simple examples to give you ideas of possibilities. 
-
-### `examples/simple.ts`
-
-An example showing how to return a native value from your platform.
-
-```typescript
-native.dreamBig = () => {
-  const message = 'Dream big!';
-  if (native.isAndroid) {
-    return new java.lang.String(message);
-  } else {
-    return NSString.alloc().initWithString(message);
-  }
-};
-```
-
-Usage in your Ionic web codebase:
-
-```typescript
-import { native } from '@nativescript/capacitor';
-
-native.dreamBig().value.then(v => {
-  console.log(v); // Dream big!
-});
-```
+The installation includes 1 simple example to give you ideas of possibilities. 
 
 ### `examples/modal.ts`
 
