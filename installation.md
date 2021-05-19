@@ -4,9 +4,13 @@
 
 2. Follow the [Capacitor Getting Started Guide](https://capacitorjs.com/docs/getting-started)
 
-**NOTE**: This is for Capacitor 3+
+:::tip Note
 
-```
+This is for Capacitor 3+
+
+:::
+
+```bash
 npm install @capacitor/cli@latest @capacitor/core@latest @capacitor/android@latest @capacitor/ios@latest
 
 // build at least once before adding platforms
@@ -24,7 +28,7 @@ You can now make changes to anything in `src/nativescript`.
 
 Then import the `native` object with `import { native } from '@nativescript/capacitor';` into your Ionic web codebase to access it all.
 
-```
+```bash
 // After making changes anywhere, build the latest of your web *and* nativescript changes with:
 npm run build:mobile
 
@@ -40,7 +44,7 @@ Before installing, ensure you have:
 
 * Followed both the Ionic and Capacitor getting started guides above. Ensure you're using Capacitor 3+ with:
 
-```
+```bash
 npm install @capacitor/cli@latest @capacitor/core@latest @capacitor/android@latest @capacitor/ios@latest
 ```
 

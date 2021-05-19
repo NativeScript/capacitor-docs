@@ -6,6 +6,9 @@
 
 3. Contains helper methods to aid in common behaviors.
 
-NOTE: Additional low level helper methods will grow in time here.
+:::tip Note
 
+Additional low level helper methods will grow in time here.
+
+:::
 
