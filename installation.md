@@ -4,10 +4,10 @@
 
 2. Follow the [Capacitor Getting Started Guide](https://capacitorjs.com/docs/getting-started)
 
-**NOTE**: This is for Capacitor 3 which is in `rc` right now, which you can use the `next` npm tag:
+**NOTE**: This is for Capacitor 3+
 
 ```
-npm install @capacitor/cli@next @capacitor/core@next @capacitor/android@next @capacitor/ios@next
+npm install @capacitor/cli@latest @capacitor/core@latest @capacitor/android@latest @capacitor/ios@latest
 
 // build at least once before adding platforms
 npm run build 
@@ -38,10 +38,10 @@ npx cap sync
 
 Before installing, ensure you have:
 
-* Followed both the Ionic and Capacitor getting started guides above. Ensure you're using Capacitor 3 rc with:
+* Followed both the Ionic and Capacitor getting started guides above. Ensure you're using Capacitor 3+ with:
 
 ```
-npm install @capacitor/cli@next @capacitor/core@next @capacitor/android@next @capacitor/ios@next
+npm install @capacitor/cli@latest @capacitor/core@latest @capacitor/android@latest @capacitor/ios@latest
 ```
 
 * Run `npx cap init` once as mentioned in the Ionic/Capacitor docs.

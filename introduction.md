@@ -2,7 +2,7 @@
 
 Yeah yeah, I already know, [take me to the Installation Guide!](installation.md)
 
-NOTE: This is for Capacitor 3 which is currently in `rc`.
+NOTE: This is for Capacitor 3+
 
 ## What is NativeScript?
 
