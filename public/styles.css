@@ -93,3 +93,84 @@
 .nav-bar-title {
   font-size: 0 !important;
 }
+
+.custom-block.tip,
+.custom-block.warning,
+.custom-block.danger {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  border-left-width: 8px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.custom-block.tip {
+  background-color: #f1f5f9;
+  border-color: #93c5fd;
+}
+
+.custom-block.warning {
+  border-color: #fcd34d;
+  color: #78350f;
+  background-color: #fef3c7;
+}
+
+.custom-block.warning .custom-block-title {
+  color: #92400e;
+}
+
+.custom-block.warning a {
+  color: #b45309;
+}
+
+.custom-block.danger {
+  border-color: #dc2626;
+  color: #7f1d1d;
+  background-color: #fee2e2;
+}
+
+.custom-block.danger .custom-block-title {
+  color: #991b1b;
+}
+
+.custom-block.danger a {
+  color: #b91c1c;
+}
+
+.custom-block > details {
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  border-radius: 0.125rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.7;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.custom-block > details h4 {
+  margin-top: 0px;
+}
+
+.custom-block > details figure:last-child,
+.custom-block > details p:last-child {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.custom-block > details summary {
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.custom-block-title {
+  font-weight: 700;
+}
