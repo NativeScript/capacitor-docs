@@ -1,8 +1,8 @@
 # Installing @nativescript/capacitor
 
-1. Follow the [Ionic Getting Started Guide](https://ionicframework.com/getting-started)
+## 1. Follow the [Ionic Getting Started Guide](https://ionicframework.com/getting-started)
 
-2. Follow the [Capacitor Getting Started Guide](https://capacitorjs.com/docs/getting-started)
+## 2. Follow the [Capacitor Getting Started Guide](https://capacitorjs.com/docs/getting-started)
 
 :::tip Note
 
@@ -22,7 +22,21 @@ npx cap add ios
 npx cap sync
 ```
 
-3. `npm i @nativescript/capacitor`
+## 3. `npm install @nativescript/capacitor`
+
+:::tip Note
+
+If you are using npm 7+, you may see this prompt during install:
+
+```
+Need to install the following packages:
+  webpack
+Ok to proceed? (y)
+```
+
+You can just type `y` and hit enter to proceed.
+
+:::
 
 You can now make changes to anything in `src/nativescript`. 
 
@@ -36,7 +50,7 @@ npm run build:mobile
 npx cap sync
 ```
 
-4. Enjoy 🎉
+## 4. Enjoy 🎉
 
 ## Notes
 
