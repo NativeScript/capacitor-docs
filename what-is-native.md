@@ -24,9 +24,8 @@ export interface NativeProperty<T> {
 This means if you want to get your current device screen brightness, you could use something like this on iOS for example:
 
 ```typescript
-native.UIScreen.mainScreen.brightness.get(value => {
-  console.log(value); // your screen brightness value
-}); 
+const value = await native.UIScreen.mainScreen.brightness.get;
+console.log(value); // your screen brightness value
 ```
 
 And if you want to set the brightness:
