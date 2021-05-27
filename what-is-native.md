@@ -16,7 +16,7 @@ All native properties which handle "primitive" types (string, number, boolean) u
 
 ```typescript
 export interface NativeProperty<T> {
-  get: (callback: (value: T) => void) => void
+  get: Promise<T>
   set: (value: T) => Promise<void>
 }
 ```
