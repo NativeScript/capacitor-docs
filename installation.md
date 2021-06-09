@@ -6,25 +6,24 @@
 
 :::tip Note
 
-This is for Capacitor 3+
+Compatible with Capacitor 3+
+
+We recommend using [yarn](https://classic.yarnpkg.com/en/) to install dependencies in your project.
 
 :::
 
 ```bash
-npm install @capacitor/cli@latest @capacitor/core@latest @capacitor/android@latest @capacitor/ios@latest
+// Ensure you have added iOS and Android platforms to your Capacitor app
 
-// build at least once before adding platforms
-npm run build 
-
-npx cap add android
-npx cap add ios
-
-npx cap sync
+ionic capacitor add android
+ionic capacitor add ios
 ```
 
-## 3. `npm install @nativescript/capacitor`
+## 3. `yarn add @nativescript/capacitor` or `npm install @nativescript/capacitor`
 
 :::tip Note
+
+Using `yarn` can help with project dependency issues. If you encounter a webpack build error you can try clearing your `node_modules` and `package-lock.json` and using `yarn` to install your dependencies instead.
 
 If you are using npm 7+, you may see this prompt during install:
 
@@ -58,15 +57,9 @@ Before installing, ensure you have:
 
 * Followed both the Ionic and Capacitor getting started guides above. Ensure you're using Capacitor 3+ with:
 
-```bash
-npm install @capacitor/cli@latest @capacitor/core@latest @capacitor/android@latest @capacitor/ios@latest
-```
+* Run `npx cap init` once as mentioned in the [Capacitor docs](https://capacitorjs.com/docs/getting-started).
 
-* Run `npx cap init` once as mentioned in the Ionic/Capacitor docs.
-
-* Run `npm run build` at least once which generates the output needed to be able to add the Capacitor mobile platforms.
-
-* Run `npx cap add ios` and/or `npx cap add android` to create the Capacitor platforms.
+* Run `ionic capacitor add ios` and/or `ionic capacitor add android` to create the Capacitor platforms.
 
 * **You can now install @nativescript/capacitor** successfully.
 
