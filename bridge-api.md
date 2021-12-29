@@ -40,6 +40,104 @@ export const iosRootViewController = () => {
 };
 ```
 
+## iosAddNotificationObserver (v2+)
+
+Add an iOS Notification observer. This will internally track the observer references however you will also receive the observer reference as the return value in case you need it. See `iosRemoveNotificationObserver` below for how to remove later.
+
+- `iosAddNotificationObserver: (notificationName: string, onReceiveCallback: (notification: NSNotification) => void) => any;`
+
+Learn more in [iOS docs](https://developer.apple.com/documentation/foundation/nsnotificationcenter).
+
+#### Example usage:
+
+```typescript
+import { iosAddNotificationObserver } from "@nativescript/capacitor/bridge";
+
+iosAddNotificationObserver('AnyEventName', (notification: NSNotification) => {
+  console.log('AnyEventName:', notification.object)
+});
+```
+
+The source of the helper:
+
+```typescript
+let iosNotificationObserverClass;
+let iosNotificationObservers: Array<any>;
+
+function ensureNotificationObserverClass() {
+  if (iosNotificationObserverClass) {
+    return;
+  }
+
+  @NativeClass
+  class NotificationObserver extends NSObject {
+    private _onReceiveCallback: (notification: NSNotification) => void;
+
+    public static initWithCallback(onReceiveCallback: (notification: NSNotification) => void): NotificationObserver {
+      const observer = <NotificationObserver>super.new();
+      observer._onReceiveCallback = onReceiveCallback;
+
+      return observer;
+    }
+
+    public onReceive(notification: NSNotification): void {
+      this._onReceiveCallback(notification);
+    }
+
+    public static ObjCExposedMethods = {
+      onReceive: { returns: interop.types.void, params: [NSNotification] },
+    };
+  }
+
+  iosNotificationObserverClass = NotificationObserver;
+}
+
+export const iosAddNotificationObserver = (notificationName: string, onReceiveCallback: (notification: NSNotification) => void) => {
+  ensureNotificationObserverClass();
+  const observer = iosNotificationObserverClass.initWithCallback(onReceiveCallback);
+  NSNotificationCenter.defaultCenter.addObserverSelectorNameObject(observer, 'onReceive', notificationName, null);
+  if (!iosNotificationObservers) {
+    iosNotificationObservers = [];
+  }
+  iosNotificationObservers.push(observer);
+  return observer;
+}
+```
+
+## iosRemoveNotificationObserver (v2+)
+
+Remove an iOS Notification observer.
+
+- `iosRemoveNotificationObserver: (observer: any, notificationName: string) => void;`
+
+Learn more in [iOS docs](https://developer.apple.com/documentation/foundation/nsnotificationcenter).
+
+#### Example usage:
+
+```typescript
+import { iosAddNotificationObserver, iosRemoveNotificationObserver } from "@nativescript/capacitor/bridge";
+
+const observer = iosAddNotificationObserver('AnyEventName', (notification: NSNotification) => {
+  console.log('AnyEventName:', notification.object)
+});
+
+iosRemoveNotificationObserver(observer, 'AnyEventName');
+```
+
+The source of the helper:
+
+```typescript
+export const iosRemoveNotificationObserver = (observer: any, notificationName: string) => {
+  if (iosNotificationObservers) {
+    const index = iosNotificationObservers.indexOf(observer);
+    if (index >= 0) {
+      iosNotificationObservers.splice(index, 1);
+      NSNotificationCenter.defaultCenter.removeObserverNameObject(observer, notificationName, null);
+    }
+  }
+}
+```
+
 ## androidCreateDialog
 
 Create Android fragment dialogs on the fly.
