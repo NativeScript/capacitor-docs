@@ -17,3 +17,31 @@ Used most often. This will always build your web codebase and follow with bundli
 
 Tip: When you were using `npm run build`, you can now simply use `npm run build:mobile` instead and it will achieve what you would want.
 
+## Troubleshooting
+
+Whenever you `npx cap sync` you may see an error like this:
+
+```
+✖ Updating iOS native dependencies with pod install - failed!
+✖ update ios - failed!
+[error] Analyzing dependencies
+        Downloading dependencies
+        Installing NativeScript (0.6.2)
+        Installing NativeScriptUI (0.1.1)
+        Installing NativescriptCapacitor 2.0.0
+        objc[64468]: Class AMSupportURLConnectionDelegate is implemented in both /usr/lib/libauthinstall.dylib
+        (0x21f712b90) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice
+        (0x103de42c8). One of the two will be used. Which one is undefined.
+        objc[64468]: Class AMSupportURLSession is implemented in both /usr/lib/libauthinstall.dylib (0x21f712be0) and
+        /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x103de4318).
+        One of the two will be used. Which one is undefined.
+        Searching for inspections failed: undefined method `map' for nil:NilClass
+```
+
+This is known to happen on Mac M1 depending on your setup. You can run the following to correct it:
+
+```
+brew upgrade && sudo xcode-select -r
+```
+
+That should ensure system dependencies are correct and xcode default path is reset properly.

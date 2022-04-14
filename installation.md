@@ -43,7 +43,7 @@ Then import the `native` object with `import { native } from '@nativescript/capa
 
 ```bash
 // After making changes anywhere, build the latest of your web *and* nativescript changes with:
-npm run build:mobile
+yarn build:mobile
 
 // Then sync with capacitor before running on iOS or Android
 npx cap sync
@@ -62,5 +62,7 @@ Before installing, ensure you have:
 * Run `ionic capacitor add ios` and/or `ionic capacitor add android` to create the Capacitor platforms.
 
 * **You can now install @nativescript/capacitor** successfully.
+
+
 
 

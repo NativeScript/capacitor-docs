@@ -38,7 +38,7 @@ module.exports = {
 
     nav: [
       {
-        text: "v1.0.0",
+        text: "v2.0.0",
         link: "#",
         activeMatch: '^nomatch$'
       },
