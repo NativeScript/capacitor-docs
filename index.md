@@ -13,7 +13,7 @@ features:
   details: Scripting native is fun but don't take our word for it. Try it!
 - title: Solutions
   details: Find effective solutions to Capacitor Community Proposals.
-footer: © NativeScript TSC 2021
+footer: © NativeScript TSC 2022
 ---
 
 <!-- {{{ someHTML }}} -->

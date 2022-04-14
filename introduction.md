@@ -1,12 +1,13 @@
 ## A Brief Introduction
 
-Yeah yeah, I already know, [take me to the Installation Guide!](installation.md)
+[Just take me to the Installation Guide!](installation.md)
 
 :::tip Note
 
 This is for Capacitor 3+
 
 :::
+
 ## What is NativeScript?
 
 NativeScript enables direct native platform API usage from JavaScript.
