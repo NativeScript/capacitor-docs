@@ -8,7 +8,7 @@ https://github.com/capacitor-community/proposals
 
 Most solutions can be copy/pasted into your own `src/nativescript` files and wired into your app right away. We will try to provide explanations where needed and further instruction if required to use any posted solution.
 
-These solutions will continue to expand over time and feel free to [post your own request on the appropriate proposals](https://github.com/capacitor-community/proposals/issues) for NativeScript solutions you'd like to see here.
+Feel free to [post your own request on the appropriate proposals](https://github.com/capacitor-community/proposals/issues) for NativeScript solutions you'd like to see here.
 
 ## Community Proposal Solutions
 

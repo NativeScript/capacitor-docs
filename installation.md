@@ -19,7 +19,9 @@ ionic capacitor add android
 ionic capacitor add ios
 ```
 
-## 3. `yarn add @nativescript/capacitor` or `npm install @nativescript/capacitor`
+## 3. Install @nativescript/capacitor
+
+`yarn add @nativescript/capacitor` or `npm install @nativescript/capacitor`?
 
 :::tip Note
 
@@ -37,21 +39,27 @@ You can just type `y` and hit enter to proceed.
 
 :::
 
-You can now make changes to anything in `src/nativescript`. 
+## 4. Success
 
-Then import the `native` object with `import { native } from '@nativescript/capacitor';` into your Ionic web codebase to access it all.
+1. You can now make changes to anything in `src/nativescript`. 
+2. In addition to:
+
+```ts
+import { native } from '@nativescript/capacitor';
+```
+
+...throughout your Ionic web codebase to access any NativeScript you write.
+
+You can build both your Web app and NativeScript via:
 
 ```bash
-// After making changes anywhere, build the latest of your web *and* nativescript changes with:
 yarn build:mobile
 
 // Then sync with capacitor before running on iOS or Android
 npx cap sync
 ```
 
-## 4. Enjoy 🎉
-
-## Notes
+### Notes
 
 Before installing, ensure you have:
 

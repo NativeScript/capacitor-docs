@@ -88,6 +88,19 @@ function getSidebar() {
       children: [
         { text: "Examples", link: "/explaining-the-examples" },
         { 
+          text: "Development Workflow", 
+          children: [
+            { text: "Using dev:nativescript", link: "/using-dev-nativescript" },
+          ]
+        },
+        { 
+          text: "Building", 
+          children: [
+            { text: "Using build:mobile", link: "/using-build-mobile" },
+            { text: "Production Tips", link: "/production-tips" },
+          ]
+        },
+        { 
           text: "@nativescript/capacitor", 
           children: [
             { text: "What is 'native'?", link: "/what-is-native" },
@@ -108,13 +121,6 @@ function getSidebar() {
           ]
         },
         { 
-          text: "Building", 
-          children: [
-            { text: "Using build:mobile", link: "/using-build-mobile" },
-            { text: "Production Tips", link: "/production-tips" },
-          ]
-        },
-        { 
           text: "Uninstall", 
           children: [
             { text: "npm uninstall", link: "/npm-uninstall" }
@@ -126,7 +132,7 @@ function getSidebar() {
       text: "Solutions",
       children: [
         { text: "Capacitor Proposals", link: "/capacitor-proposals" },
-        { text: "Swag Contest!", link: "/swag-contest" },
+        // { text: "Swag Contest!", link: "/swag-contest" },
         { text: "Brightness - #77", link: "/solution-77" },
         { text: "Power Mode - #79", link: "/solution-79" },
       ],
