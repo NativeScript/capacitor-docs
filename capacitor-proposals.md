@@ -14,3 +14,4 @@ Feel free to [post your own request on the appropriate proposals](https://github
 
 * [Brightness - Proposal 77](solution-77.md)
 * [Power Mode - Proposal 79](solution-79.md)
+* [Zip - Proposal 145](solution-145.md)

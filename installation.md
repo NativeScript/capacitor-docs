@@ -42,20 +42,21 @@ You can just type `y` and hit enter to proceed.
 ## 4. Success
 
 1. You can now make changes to anything in `src/nativescript`. 
-2. In addition to:
+2. In addition to using those utilities via the `native` import throughout your Ionic web codebase to access any NativeScript you write:
 
 ```ts
 import { native } from '@nativescript/capacitor';
 ```
 
-...throughout your Ionic web codebase to access any NativeScript you write.
-
 You can build both your Web app and NativeScript via:
 
 ```bash
 yarn build:mobile
+```
 
-// Then sync with capacitor before running on iOS or Android
+Then sync with Capacitor before running on iOS or Android:
+
+```
 npx cap sync
 ```
 

@@ -38,7 +38,7 @@ module.exports = {
 
     nav: [
       {
-        text: "v2.0.0",
+        text: "v2.0.2",
         link: "#",
         activeMatch: '^nomatch$'
       },
@@ -121,11 +121,11 @@ function getSidebar() {
           ]
         },
         { 
-          text: "Uninstall", 
+          text: "Event communication", 
           children: [
-            { text: "npm uninstall", link: "/npm-uninstall" }
+            { text: "Notify and listen to events", link: "/event-communication" },
           ]
-        }
+        },
       ],
     },
     {
@@ -135,7 +135,14 @@ function getSidebar() {
         // { text: "Swag Contest!", link: "/swag-contest" },
         { text: "Brightness - #77", link: "/solution-77" },
         { text: "Power Mode - #79", link: "/solution-79" },
+        { text: "Zip - #145", link: "/solution-145" },
       ],
     },
+    { 
+      text: "Uninstall", 
+      children: [
+        { text: "npm uninstall", link: "/uninstall" }
+      ]
+    }
   ];
 }

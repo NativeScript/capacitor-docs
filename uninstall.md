@@ -1,6 +1,6 @@
 ## Doesn't fit your needs?
 
-No worries, you can remove NativeScript from Capacitor with:
+You can remove NativeScript from Capacitor with:
 
 1. `node ./node_modules/.bin/uninstall-nativescript.js` - will remove ios/android build steps
 2. `npm uninstall @nativescript/capacitor` - will remove npm package
