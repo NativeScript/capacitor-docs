@@ -20,6 +20,26 @@ module.exports = {
     ['meta', { name: 'twitter:creator', content: "@nativescript" }],
     ['meta', { name: 'twitter:card', content: "summary_large_image" }],
     ['meta', { name: 'twitter:image', content: "https://capacitor.nativescript.org/assets/images/og_banner.png" }],
+
+    ['script', { src: 'https://cdn.tailwindcss.com' }],
+    ['script', {}, `
+      tailwind.config = {
+        theme: {
+          extend: {
+            keyframes: {
+              'move-bg': {
+                to: {
+                  backgroundPosition: '400% 0',
+                },
+              },
+            },
+            animation: {
+              'move-bg': 'move-bg 20s infinite linear',
+            },
+          },
+        },
+      }
+    `]
   ],
 
   themeConfig: {

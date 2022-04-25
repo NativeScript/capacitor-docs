@@ -1,19 +1,56 @@
 ---
-home: true
-heroText: NativeScript for Capacitor
-tagline: The native platform at your fingertips.
-actionText: Become Empowered
-actionLink: /introduction
-features:
-- title: Explore
-  details: Let's explore how this integration works and what's available.
-  # context:
-  #   someHTML: <a href="/introduction">Introduction</a>
-- title: Getting Started
-  details: Scripting native is fun but don't take our word for it. Try it!
-- title: Solutions
-  details: Find effective solutions to Capacitor Community Proposals.
-footer: © NativeScript TSC 2022
+customLayout: true
+sidebar: false
 ---
 
-<!-- {{{ someHTML }}} -->
+<script setup>
+import HomeComponent from './.vitepress/theme/HomeComponent.vue'
+</script>
+
+
+<HomeComponent>
+
+  <template v-slot:box1>
+
+```ts
+import { Zip } from "@nativescript/zip";
+import { notifyEvent } from "@nativescript/capacitor/bridge";
+
+native.fileZip = function (options) {
+  Zip.zip({
+    directory: 'assets',
+    archive: 'assets.zip',
+    onProgress: (progress) => {
+      notifyEvent("zipProgress", progress);
+    },
+  }).then((filePath) => {
+    notifyEvent("zipComplete", filePath);
+  });
+};
+```
+
+  </template>
+
+  <template v-slot:box2>
+
+```ts
+import { native } from '@nativescript/capacitor';
+
+export class ExploreContainerComponent {
+  fileZip() {
+    native.onEvent("zipComplete", (filePath: string) => {
+      console.log(`zip created at ${filePath} successfully!`);
+    });
+      
+    native.fileZip({
+      directory: 'assets',
+      archive: 'assets.zip'
+    });
+  }
+}
+```
+
+  </template>
+
+</HomeComponent>
+
