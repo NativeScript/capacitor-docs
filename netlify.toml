@@ -1,0 +1,8 @@
+[build]
+  publish = ".vitepress/dist"
+  command = "yarn build"
+
+[build.environment]
+  NETLIFY_USE_YARN = "true"
+  YARN_FLAGS = "--ignore-engines"
+  NODE_VERSION = "15"
