@@ -1,25 +1,31 @@
 <template>
-  <div class="bg-gradient-to-br from-sky-50 to-slate-50">
-    <div class="container mx-auto pt-32">
-      <div class="lg:py-20">
+  <div class="bg-gradient-to-br from-sky-50 to-slate-50 min-h-screen">
+    <div class="container mx-auto pt-32 pb-32">
+      <!-- <div class="grid grid-cols-2 gap-20"> -->
+      <div class="lg:py-20 text-center">
         <h1
-          class="animate-move-bg bg-gradient-to-r from-fuchsia-400 via-[#53b9ff] to-fuchsia-400 bg-[length:400%] bg-clip-text text-5xl md:text-8xl font-bold text-transparent text-center"
+          class="animate-move-bg bg-gradient-to-r from-fuchsia-400 via-[#53b9ff] to-fuchsia-400 bg-[length:400%] bg-clip-text text-5xl md:text-8xl font-bold text-transparent"
         >
           NativeScript for Capacitor
         </h1>
 
-        <div class="text-center text-2xl md:text-5xl mt-6">
+        <div class="text-2xl md:text-5xl mt-6">
           The platform at your fingertips.
         </div>
 
-        <div class="text-center mt-12">
+        <div class="mt-12">
           <a
-            href=""
+            href="/installation"
             class="inline-block bg-blue-400 rounded-md text-white text-xl px-6 py-4 hover:no-underline hover:bg-blue-500"
             >Get Started &rightarrow;</a
           >
         </div>
       </div>
+
+      <!-- <div class="">
+          <img src="/assets/images/capacitor_home_graphic.png" alt="" />
+        </div>
+      </div> -->
 
       <div class="mt-4 lg:mt-24 mb-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="mt-8 px-4 lg:px-0">
@@ -69,7 +75,8 @@
             <div class="h-3 w-3 rounded-full bg-green-600"></div>
             <div class="pl-6 text-sm text-gray-300">
               ./src/<span class="text-cyan-400">app</span>
-              <span class="hidden md:inline">/explore-container</span>/<span class="font-bold text-white"
+              <span class="hidden md:inline">/explore-container</span>/<span
+                class="font-bold text-white"
                 >explore-container.component.ts</span
               >
             </div>

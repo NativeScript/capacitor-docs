@@ -17,6 +17,8 @@ module.exports = {
   plugins: [],
   options: {
     safelist: ['html', 'body'],
+  },
+  corePlugins: {
+    preflight: false
   }
 };
-
