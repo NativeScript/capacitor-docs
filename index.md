@@ -21,10 +21,10 @@ native.fileZip = function (options) {
     directory: 'assets',
     archive: 'assets.zip',
     onProgress: (progress) => {
-      notifyEvent("zipProgress", progress);
+      notifyEvent('zipProgress', progress);
     },
   }).then((filePath) => {
-    notifyEvent("zipComplete", filePath);
+    notifyEvent('zipComplete', filePath);
   });
 };
 ```
@@ -38,8 +38,8 @@ import { native } from '@nativescript/capacitor';
 
 export class ExploreContainerComponent {
   fileZip() {
-    native.onEvent("zipComplete", (filePath: string) => {
-      console.log(`zip created at ${filePath} successfully!`);
+    native.onEvent('zipComplete', (filePath: string) => {
+      console.log('zip created at:', filePath);
     });
       
     native.fileZip({
