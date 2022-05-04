@@ -19,7 +19,9 @@ Tip: When you were using `npm run build`, you can now simply use `npm run build:
 
 ## Troubleshooting
 
-Whenever you `npx cap sync` you may see an error like this:
+Whenever you `npx cap sync` you may encounter any of the following errors:
+
+### Searching for inspections failed: undefined method `map' for nil:NilClass
 
 ```
 ✖ Updating iOS native dependencies with pod install - failed!
@@ -38,6 +40,8 @@ Whenever you `npx cap sync` you may see an error like this:
         Searching for inspections failed: undefined method `map' for nil:NilClass
 ```
 
+**Solution**
+
 This is known to happen on Mac M1 depending on your setup. You can run the following to correct it:
 
 ```
@@ -45,3 +49,23 @@ brew upgrade && sudo xcode-select -r
 ```
 
 That should ensure system dependencies are correct and xcode default path is reset properly.
+
+### Nanaimo::Reader::ParseError
+
+```bash
+Nanaimo::Reader::ParseError - [!] Found additional characters after parsing the root plist object
+ #  -------------------------------------------
+1>  version https://git-lfs.github.com/spec/v1
+            ^
+ #  oid sha256:e385dc25878dba8bf63a4ec695d935413db579efc88328284d0dfbc4d440c08d
+ #  size 1463
+ #  -------------------------------------------
+```
+
+**Solution**
+
+> Please check if you have git-lfs installed and clear cocoapod cache before running install again
+
+> To clear cache please go to ~/Library/Caches/Cocoapods/ and remove Amity SDK folder - you should be able to run a clean install afterward
+
+Context: https://community.amity.co/t/found-additional-characters-after-parsing-the-root-plist-object-nanaimo-parseerror/143
