@@ -76,7 +76,7 @@ Before installing, ensure you have:
 
 Whenever you `npx cap sync` you may encounter any of the following errors:
 
-### Searching for inspections failed: undefined method `map' for nil:NilClass
+### Potential error 1
 
 ```
 ✖ Updating iOS native dependencies with pod install - failed!
@@ -105,7 +105,7 @@ brew upgrade && sudo xcode-select -r
 
 That should ensure system dependencies are correct and xcode default path is reset properly.
 
-### Nanaimo::Reader::ParseError
+### Potential error 2
 
 ```bash
 Nanaimo::Reader::ParseError - [!] Found additional characters after parsing the root plist object
