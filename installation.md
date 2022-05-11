@@ -126,5 +126,15 @@ Nanaimo::Reader::ParseError - [!] Found additional characters after parsing the 
 Context: https://community.amity.co/t/found-additional-characters-after-parsing-the-root-plist-object-nanaimo-parseerror/143
 
 
+### Potential error 3
 
+For Android, if you see an error like this in Logcat: 
+
+```bash
+07:39:02.434 18398-18398/? E/TNS.error: metadata folder couldn't be opened! (Error: 2)
+```
+
+**Solution** 
+
+You can delete the `android/app/src/main/assets/metadata` folder and rerun.
 
