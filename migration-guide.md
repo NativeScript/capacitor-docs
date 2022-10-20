@@ -6,25 +6,25 @@ For existing v2 users, you can update by:
 
 1. Update `package.json`:
 
-```
+```ts
 "@nativescript/capacitor": "^4.0.0"
 ```
 
 2. Update `AppDelegate.swift`:
 
 From this:
-```
+```ts
 self.nativescript?.runMainScript()
 ```
 
 to this:
-```
+```ts
 self.nativescript?.runMainApplication()
 ```
 
 3. Update `ios/App/Podfile` to reference the latest `~8.3.3` Pod and adjust the post_install setup:
 
-```
+```ts
 require_relative '../../node_modules/@nativescript/capacitor/ios/nativescript.rb'
 require_relative '../../node_modules/@capacitor/ios/scripts/pods_helpers'
 
@@ -59,7 +59,6 @@ post_install do |installer|
 
   nativescript_capacitor_post_install(installer)
 end
-
 ```
 
 4. Ensure latest pod specs are refreshed locally
