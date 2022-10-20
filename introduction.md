@@ -4,7 +4,7 @@
 
 :::tip Note
 
-This is for Capacitor 3+
+This is for Capacitor 4+
 
 :::
 

@@ -6,7 +6,7 @@
 
 :::tip Note
 
-Compatible with Capacitor 3+
+Compatible with Capacitor 4+
 
 We recommend using [yarn](https://classic.yarnpkg.com/en/) to install dependencies in your project.
 
@@ -64,7 +64,7 @@ npx cap sync
 
 Before installing, ensure you have:
 
-* Followed both the Ionic and Capacitor getting started guides above. Ensure you're using Capacitor 3+ with:
+* Followed both the Ionic and Capacitor getting started guides above. Ensure you're using Capacitor 4+ with:
 
 * Run `npx cap init` once as mentioned in the [Capacitor docs](https://capacitorjs.com/docs/getting-started).
 
@@ -83,9 +83,9 @@ Whenever you `npx cap sync` you may encounter any of the following errors:
 ✖ update ios - failed!
 [error] Analyzing dependencies
         Downloading dependencies
-        Installing NativeScript (0.6.2)
+        Installing NativeScript (8.3.3)
         Installing NativeScriptUI (0.1.1)
-        Installing NativescriptCapacitor 2.0.0
+        Installing NativescriptCapacitor 4.0.0
         objc[64468]: Class AMSupportURLConnectionDelegate is implemented in both /usr/lib/libauthinstall.dylib
         (0x21f712b90) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice
         (0x103de42c8). One of the two will be used. Which one is undefined.
