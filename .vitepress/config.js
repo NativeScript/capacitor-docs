@@ -38,7 +38,7 @@ module.exports = {
 
     nav: [
       {
-        text: "v4.0.0",
+        text: "v5.0.0",
         link: "#",
         activeMatch: '^nomatch$'
       },
@@ -129,7 +129,8 @@ function getSidebar() {
         { 
           text: "Updating", 
           children: [
-            { text: "Migrating v2 to v4", link: "/migration-guide" },
+            { text: "Migrating v4 to v5", link: "/migration-guide#migrating-from-v4-to-v5" },
+            { text: "Migrating v2 to v4", link: "/migration-guide#migrating-from-v2-to-v4" },
           ]
         },
       ],

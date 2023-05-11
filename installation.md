@@ -1,48 +1,30 @@
 # Installing @nativescript/capacitor
 
-## 1. Follow the [Ionic Getting Started Guide](https://ionicframework.com/getting-started)
-
-## 2. Follow the [Capacitor Getting Started Guide](https://capacitorjs.com/docs/getting-started)
+## 1. Follow the [Ionic](https://ionicframework.com/getting-started) or [Capacitor](https://capacitorjs.com/docs/getting-started) Getting Started Guide
 
 :::tip Note
 
-Compatible with Capacitor 4+
-
-We recommend using [yarn](https://classic.yarnpkg.com/en/) to install dependencies in your project.
+Compatible with Capacitor 5+
 
 :::
 
 ```bash
 // Ensure you have added iOS and Android platforms to your Capacitor app
 
-ionic capacitor add android
-ionic capacitor add ios
+npx cap add android
+npx cap add ios
 ```
 
-## 3. Install @nativescript/capacitor
+## 2. Install @nativescript/capacitor
 
-`yarn add @nativescript/capacitor` or `npm install @nativescript/capacitor`?
-
-:::tip Note
-
-Using `yarn` can help with project dependency issues. If you encounter a webpack build error you can try clearing your `node_modules` and `package-lock.json` and using `yarn` to install your dependencies instead.
-
-If you are using npm 7+, you may see this prompt during install:
-
-```
-Need to install the following packages:
-  webpack
-Ok to proceed? (y)
+```bash
+npm install @nativescript/capacitor
 ```
 
-You can just type `y` and hit enter to proceed.
-
-:::
-
-## 4. Success
+## 3. Success
 
 1. You can now make changes to anything in `src/nativescript`. 
-2. In addition to using those utilities via the `native` import throughout your Ionic web codebase to access any NativeScript you write:
+2. In addition to using those utilities via the `native` import throughout your web codebase to access any NativeScript you write:
 
 ```ts
 import { native } from '@nativescript/capacitor';
@@ -51,7 +33,7 @@ import { native } from '@nativescript/capacitor';
 You can build both your Web app and NativeScript via:
 
 ```bash
-yarn build:mobile
+npm run build:mobile
 ```
 
 Then sync with Capacitor before running on iOS or Android:
@@ -64,11 +46,11 @@ npx cap sync
 
 Before installing, ensure you have:
 
-* Followed both the Ionic and Capacitor getting started guides above. Ensure you're using Capacitor 4+ with:
+* Followed the Ionic or Capacitor getting started guides above. Ensure you're using Capacitor 5+.
 
 * Run `npx cap init` once as mentioned in the [Capacitor docs](https://capacitorjs.com/docs/getting-started).
 
-* Run `ionic capacitor add ios` and/or `ionic capacitor add android` to create the Capacitor platforms.
+* Run `npx cap add ios` and/or `npx cap add android` to create the Capacitor platforms.
 
 * **You can now install @nativescript/capacitor** successfully.
 
@@ -77,6 +59,28 @@ Before installing, ensure you have:
 Whenever you `npx cap sync` you may encounter any of the following errors:
 
 ### Potential error 1
+
+```bash
+Analyzing dependencies
+[!] Unable to satisfy the following requirements:
+
+- `NativeScriptSDK (~> 8.4.2)` required by `Podfile`
+
+None of your spec sources contain a spec satisfying the dependency: `NativeScriptSDK (~> 8.4.2)`.
+
+You have either:
+ * out-of-date source repos which you can update with `pod repo update`.
+ * mistyped the name or version.
+ * not added the source repo that hosts the Podspec to your Podfile.
+
+Note: as of CocoaPods 1.0, `pod repo update` does not happen on `pod install` by default.
+```
+
+**Solution**
+
+Run: `pod repo update`, then run `npx cap sync` again.
+
+### Potential error 2
 
 ```
 ✖ Updating iOS native dependencies with pod install - failed!
@@ -105,7 +109,7 @@ brew upgrade && sudo xcode-select -r
 
 That should ensure system dependencies are correct and xcode default path is reset properly.
 
-### Potential error 2
+### Potential error 3
 
 ```bash
 Nanaimo::Reader::ParseError - [!] Found additional characters after parsing the root plist object
@@ -126,7 +130,7 @@ Nanaimo::Reader::ParseError - [!] Found additional characters after parsing the 
 Context: https://community.amity.co/t/found-additional-characters-after-parsing-the-root-plist-object-nanaimo-parseerror/143
 
 
-### Potential error 3
+### Potential error 4
 
 For Android, if you see an error like this in Logcat: 
 
