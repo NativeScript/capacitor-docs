@@ -129,8 +129,8 @@ function getSidebar() {
         { 
           text: "Updating", 
           children: [
-            { text: "Migrating v4 to v5", link: "/migration-guide#migrating-from-v4-to-v5" },
-            { text: "Migrating v2 to v4", link: "/migration-guide#migrating-from-v2-to-v4" },
+            { text: "Migrating v4 to v5", link: "/migration-guide-v4-v5" },
+            { text: "Migrating v2 to v4", link: "/migration-guide-v2-v4" },
           ]
         },
       ],
