@@ -39,7 +39,7 @@ target 'App' do
   # Add your Pods here
 
  pod 'NativeScriptSDK', '~> 8.4.2'
- pod 'NativeScriptUI'
+ pod 'NativeScriptUI', '~> 0.1.2'
 end
 
 post_install do |installer|
