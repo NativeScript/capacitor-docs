@@ -6,13 +6,13 @@ For existing v4 users, you can update by:
 
 1. Update `package.json`:
 
-```
+```ts
 "@nativescript/capacitor": "^5.0.0"
 ```
 
 2. Update `ios/App/Podfile` to reference the latest `NativeScriptSDK ~8.4.2` Pod and adjust the post_install setup:
 
-```
+```ts
 require_relative '../../node_modules/@nativescript/capacitor/ios/nativescript.rb'
 require_relative '../../node_modules/@capacitor/ios/scripts/pods_helpers'
 
