@@ -18,7 +18,8 @@ target 'App' do
   # Add your Pods here
 
   # NativeScript
-  pod 'NativeScript'
+  pod 'NativeScriptSDK', '~> 8.4.2'
+  pod 'NativeScriptUI'
 
   # Zip/Unzip
   pod 'SSZipArchive', '~> 2.4.3'
