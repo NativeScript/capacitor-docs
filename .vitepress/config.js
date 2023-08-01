@@ -25,6 +25,7 @@ module.exports = {
   themeConfig: {
     repo: "NativeScript/capacitor-docs",
     docsDir: ".",
+    docsBranch: "main",
     logo: "assets/images/nativescript-for-capacitor.png",
 
     editLinks: true,
