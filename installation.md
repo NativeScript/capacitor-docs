@@ -142,3 +142,15 @@ For Android, if you see an error like this in Logcat:
 
 You can delete the `android/app/src/main/assets/metadata` folder and rerun.
 
+### Potential error 5
+
+For iOS, after your very first `npx cap sync` and then running the iOS app you may see an error like this in Xcode:
+
+```bash
+Build input file cannot be found: '/Users/{username}/Library/Developer/Xcode/DerivedData/App-eipugnxycvymmgcaaenuujqazunt/Build/Products/Debug-iphonesimulator/metadata-arm64.bin'. Did you forget to declare this file as an output of a script phase or custom build rule which produces it?
+```
+
+**Solution** 
+
+Just run again. This error can occur on a very first fresh run while Xcode is preparing the project.
+
