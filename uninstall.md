@@ -1,9 +1,16 @@
-## Doesn't fit your needs?
+# Doesn't fit your needs?
 
-You can remove NativeScript from Capacitor with:
+Removing NativeScript from a Capacitor 8.x app is just removing files — nothing was ever changed in your Xcode project, so there is nothing to restore:
 
-1. `node ./node_modules/.bin/uninstall-nativescript.js` - will remove ios/android build steps
-2. `npm uninstall @nativescript/capacitor` - will remove npm package
-3. It is up to you if you'd like to archive the `src/nativescript` folder for later use; It will no longer be used regardless.
+1. `npm uninstall @nativescript/capacitor`
+2. Delete `src/nativescript/` and `src/native-custom.d.ts` (or archive them for later)
+3. Remove the `build:nativescript` and `capacitor:copy:before` scripts from your `package.json`
+4. `npx cap sync ios`
 
-If you find the uninstall doesn't clean you up enough, feel free to let us know [here](https://github.com/NativeScript/capacitor/issues).
+:::tip v5 note
+
+The v5 `uninstall-nativescript.js` restore script is no longer needed — it existed to undo v5's Xcode project modifications, and 8.x never makes any.
+
+:::
+
+If anything doesn't clean up as expected, let us know [here](https://github.com/NativeScript/capacitor/issues).

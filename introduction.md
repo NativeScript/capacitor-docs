@@ -4,7 +4,7 @@
 
 :::tip Note
 
-This is for Capacitor 4+
+**8.x** targets **Capacitor 8** (SPM) and is currently **iOS-only** — installation is fully additive, with zero Xcode project modifications. Android support returns in a later 8.x release; for CocoaPods-based apps or Android today, use `@nativescript/capacitor@5`.
 
 :::
 

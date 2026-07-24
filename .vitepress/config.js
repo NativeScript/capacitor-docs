@@ -39,7 +39,7 @@ module.exports = {
 
     nav: [
       {
-        text: "v5.0.2",
+        text: "v8.0.0-rc.0",
         link: "#",
         activeMatch: '^nomatch$'
       },
@@ -88,16 +88,16 @@ function getSidebar() {
       text: "Docs",
       children: [
         { text: "Examples", link: "/explaining-the-examples" },
-        { 
-          text: "Development Workflow", 
+        {
+          text: "Development Workflow",
           children: [
-            { text: "Using dev:nativescript", link: "/using-dev-nativescript" },
+            { text: "Iterating on native code", link: "/using-dev-nativescript" },
           ]
         },
-        { 
-          text: "Building", 
+        {
+          text: "Building",
           children: [
-            { text: "Using build:mobile", link: "/using-build-mobile" },
+            { text: "Building with nscap", link: "/using-build-mobile" },
             { text: "Production Tips", link: "/production-tips" },
           ]
         },
@@ -127,9 +127,10 @@ function getSidebar() {
             { text: "Notify and listen to events", link: "/event-communication" },
           ]
         },
-        { 
-          text: "Updating", 
+        {
+          text: "Updating",
           children: [
+            { text: "Migrating v5 to v8", link: "/migration-guide-v5-v8" },
             { text: "Migrating v4 to v5", link: "/migration-guide-v4-v5" },
             { text: "Migrating v2 to v4", link: "/migration-guide-v2-v4" },
           ]

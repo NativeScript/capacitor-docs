@@ -1,5 +1,11 @@
 # Zip
 
+:::warning v5 solution
+
+This walkthrough was written for **v5 (CocoaPods)** — it edits the Podfile, which doesn't exist in 8.x SPM apps. An 8.x take on NativeScript plugins with native dependencies (SPM packages + `nscap metadata`) is coming with a later 8.x release.
+
+:::
+
 https://github.com/capacitor-community/proposals/issues/145
 
 This example uses [@nativescript/zip](https://docs.nativescript.org/plugins/zip.html)

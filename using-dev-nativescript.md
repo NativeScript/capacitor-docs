@@ -1,9 +1,18 @@
 # Development Workflow
 
-You will find a couple additional npm scripts the plugin added to your project. For example, this one can be used to auto reload the app when making changes within the `src/nativescript` folder:
+The NativeScript bundle rebuilds automatically as part of your normal Capacitor loop — the `capacitor:copy:before` hook runs `nscap build` (milliseconds) on every copy/sync:
 
-```shell
-"dev:nativescript": "dev-nativescript"
+```bash
+# after editing anything in src/nativescript
+npx cap run ios
 ```
 
-You can run `yarn dev:nativescript` when focusing on various NativeScript development efforts for more app live reloading to try changes.
+That's it: `cap run` syncs (rebuilding your NativeScript bundle via the hook), builds, and deploys.
+
+For web-side changes, use your framework's dev server as usual — the `native` object is simply inactive in a plain browser, so your web dev loop is unaffected.
+
+:::tip v5 note
+
+The v5 `dev:nativescript` watcher CLI has been retired. On-device live reload of NativeScript code (without reinstalling the app) is on the 8.x roadmap via TKLiveSync, which already ships with the runtime.
+
+:::

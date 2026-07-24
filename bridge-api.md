@@ -17,7 +17,9 @@ import { iosRootViewController } from "@nativescript/capacitor/bridge";
 
 const vc = UIViewController.alloc().init();
 vc.view.backgroundColor = UIColor.blueColor;
-iosRootViewController().presentModalViewControllerAnimated(vc, true);
+iosRootViewController().presentViewControllerAnimatedCompletion(vc, true, () => {
+  console.log('presented');
+});
 ```
 
 The source of the helper:

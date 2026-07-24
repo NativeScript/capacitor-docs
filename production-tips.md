@@ -1,14 +1,17 @@
 # Production Tips
 
-You can add 2 additional flags to your NativeScript build when preparing your app for production.
+The 8.x pipeline bundles your `src/nativescript` code with esbuild — output is already compact and tree-shaken, and there is no separate "production mode" to configure.
 
-* `--env=uglify=true` Minifies the bundle.
+A few notes for release builds:
 
-* `--env=production=true` Bundles with webpack's production mode on.
+* **Debug logging is already off by default.** Verbose bridge marshalling logs only appear if you call `nativeDebug(true)` — make sure you're not shipping that call.
 
-You can either add these to the provide build script or create your own production npm scripts, for example in your `package.json` scripts:
+* **Metadata footprint.** The platform API metadata (~8–12 MB) lives in your app bundle whether it comes from the NativeScript framework (default) or from `nscap metadata`. This matches the footprint every NativeScript app has always had — it *is* the map of the platform APIs.
 
-```shell
-"build:nativescript:prod": "build-nativescript --env=uglify=true --env=production=true",
-"build:mobile:prod": "npm-run-all build build:nativescript:prod"
-```
+* **NativeScript `console.log` output** goes to the system log in release builds too; strip or gate any noisy logging in your native helpers before shipping.
+
+:::tip v5 note
+
+The v5 webpack flags (`--env=uglify=true`, `--env=production=true`) no longer exist — esbuild replaced the webpack pipeline. Bundle minification lands as an `nscap build` flag in a follow-up 8.x release.
+
+:::

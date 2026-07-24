@@ -1,156 +1,74 @@
 # Installing @nativescript/capacitor
 
-## 1. Follow the [Ionic](https://ionicframework.com/getting-started) or [Capacitor](https://capacitorjs.com/docs/getting-started) Getting Started Guide
+:::tip Version note
 
-:::tip Note
+**8.x** is SPM-first and works with **Capacitor 8** apps (or Capacitor 6/7 apps using [SPM mode](https://capacitorjs.com/docs/ios/spm)). This release is **iOS-only**; Android support returns in a later 8.x release.
 
-Compatible with Capacitor 5+
+Using CocoaPods or need Android today? Use `@nativescript/capacitor@5` and the v5 docs.
 
 :::
 
-```bash
-// Ensure you have added iOS and Android platforms to your Capacitor app
+There is no project surgery in 8.x: no CocoaPods, no Podfile edits, no AppDelegate changes, no Xcode build phases, no linker flags. The NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) when Capacitor syncs the plugin, and platform API metadata ships inside the runtime's framework — zero configuration.
 
-npx cap add android
+## 1. Start from a Capacitor app
+
+Follow the [Ionic](https://ionicframework.com/getting-started) or [Capacitor](https://capacitorjs.com/docs/getting-started) getting started guide, and make sure the iOS platform is added:
+
+```bash
 npx cap add ios
 ```
 
-## 2. Install @nativescript/capacitor
+## 2. Install and initialize
 
 ```bash
 npm install @nativescript/capacitor
+npx nscap init
 ```
 
-## 3. Success
+`nscap init` is **additive and idempotent** — it only creates files and npm scripts, never touching your Xcode project:
 
-1. You can now make changes to anything in `src/nativescript`. 
-2. In addition to using those utilities via the `native` import throughout your web codebase to access any NativeScript you write:
+- `src/nativescript/index.ts` — your native TypeScript entry, with a working native modal example
+- `src/native-custom.d.ts` — strongly type your own `native.*` helpers
+- npm scripts that wire `nscap build` into Capacitor's `capacitor:copy:before` hook, so your native code builds automatically on every `npx cap copy` / `npx cap sync`
+
+## 3. Build and run
+
+```bash
+npm run build       # build your web assets as usual (any bundler)
+npx cap sync ios
+npx cap run ios
+```
+
+That's the entire setup. At app launch you'll see the example's greeting in the native console, and from your web code you can immediately do:
 
 ```ts
 import { native } from '@nativescript/capacitor';
+
+const version = await native.UIDevice.currentDevice.systemVersion.get;
+native.openNativeModalView(); // the scaffolded example helper
 ```
 
-You can build both your Web app and NativeScript via:
+## Requirements
 
-```bash
-npm run build:mobile
-```
-
-Then sync with Capacitor before running on iOS or Android:
-
-```
-npx cap sync
-```
-
-### Notes
-
-Before installing, ensure you have:
-
-* Followed the Ionic or Capacitor getting started guides above. Ensure you're using Capacitor 5+.
-
-* Run `npx cap init` once as mentioned in the [Capacitor docs](https://capacitorjs.com/docs/getting-started).
-
-* Run `npx cap add ios` and/or `npx cap add android` to create the Capacitor platforms.
-
-* **You can now install @nativescript/capacitor** successfully.
+- Capacitor 8 iOS app (SPM is the Capacitor 8 default) — or Capacitor 6/7 with [SPM mode](https://capacitorjs.com/docs/ios/spm)
+- iOS 15+, Xcode with the iOS SDK
+- Node 18+
 
 ## Troubleshooting
 
-Whenever you `npx cap sync` you may encounter any of the following errors:
+### Blank webview after adding NativeScript
 
-### Potential error 1
+If the app launches to a blank screen, your web assets were likely never built — run your web build (e.g. `npm run build`) before `npx cap sync`. The NativeScript build hook creates the web assets folder, which can mask Capacitor's usual "web assets directory not found" error on brand-new apps.
 
-```bash
-Analyzing dependencies
-[!] Unable to satisfy the following requirements:
+### Where do my NativeScript `console.log`s go?
 
-- `NativeScriptSDK (~> 8.4.2)` required by `Podfile`
-
-None of your spec sources contain a spec satisfying the dependency: `NativeScriptSDK (~> 8.4.2)`.
-
-You have either:
- * out-of-date source repos which you can update with `pod repo update`.
- * mistyped the name or version.
- * not added the source repo that hosts the Podspec to your Podfile.
-
-Note: as of CocoaPods 1.0, `pod repo update` does not happen on `pod install` by default.
-```
-
-**Solution**
-
-Run: `pod repo update`, then run `npx cap sync` again.
-
-### Potential error 2
-
-```
-✖ Updating iOS native dependencies with pod install - failed!
-✖ update ios - failed!
-[error] Analyzing dependencies
-        Downloading dependencies
-        Installing NativeScript (8.3.3)
-        Installing NativeScriptUI (0.1.1)
-        Installing NativescriptCapacitor 4.0.0
-        objc[64468]: Class AMSupportURLConnectionDelegate is implemented in both /usr/lib/libauthinstall.dylib
-        (0x21f712b90) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice
-        (0x103de42c8). One of the two will be used. Which one is undefined.
-        objc[64468]: Class AMSupportURLSession is implemented in both /usr/lib/libauthinstall.dylib (0x21f712be0) and
-        /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x103de4318).
-        One of the two will be used. Which one is undefined.
-        Searching for inspections failed: undefined method `map' for nil:NilClass
-```
-
-**Solution**
-
-This is known to happen on Mac M1 depending on your setup. You can run the following to correct it:
-
-```
-brew upgrade && sudo xcode-select -r
-```
-
-That should ensure system dependencies are correct and xcode default path is reset properly.
-
-### Potential error 3
+To the native system log, not the webview console. See them in the Xcode console, or:
 
 ```bash
-Nanaimo::Reader::ParseError - [!] Found additional characters after parsing the root plist object
- #  -------------------------------------------
-1>  version https://git-lfs.github.com/spec/v1
-            ^
- #  oid sha256:e385dc25878dba8bf63a4ec695d935413db579efc88328284d0dfbc4d440c08d
- #  size 1463
- #  -------------------------------------------
+# simulator
+xcrun simctl spawn booted log stream --predicate 'process == "App"'
 ```
 
-**Solution**
+### First build is slow
 
-> Please check if you have git-lfs installed and clear cocoapod cache before running install again
-
-> To clear cache please go to ~/Library/Caches/Cocoapods/ and remove Amity SDK folder - you should be able to run a clean install afterward
-
-Context: https://community.amity.co/t/found-additional-characters-after-parsing-the-root-plist-object-nanaimo-parseerror/143
-
-
-### Potential error 4
-
-For Android, if you see an error like this in Logcat: 
-
-```bash
-07:39:02.434 18398-18398/? E/TNS.error: metadata folder couldn't be opened! (Error: 2)
-```
-
-**Solution** 
-
-You can delete the `android/app/src/main/assets/metadata` folder and rerun.
-
-### Potential error 5
-
-For iOS, after your very first `npx cap sync` and then running the iOS app you may see an error like this in Xcode:
-
-```bash
-Build input file cannot be found: '/Users/{username}/Library/Developer/Xcode/DerivedData/App-eipugnxycvymmgcaaenuujqazunt/Build/Products/Debug-iphonesimulator/metadata-arm64.bin'. Did you forget to declare this file as an output of a script phase or custom build rule which produces it?
-```
-
-**Solution** 
-
-Just run again. This error can occur on a very first fresh run while Xcode is preparing the project.
-
+The very first Xcode build downloads the NativeScript runtime binaries through Swift Package Manager. Subsequent builds use the local SPM cache and are fast.
