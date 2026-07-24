@@ -4,5 +4,7 @@
 
 [build.environment]
   NETLIFY_USE_YARN = "true"
-  YARN_FLAGS = "--ignore-engines"
-  NODE_VERSION = "15"
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions"

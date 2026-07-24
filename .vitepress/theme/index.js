@@ -1,6 +1,4 @@
-import DefaultTheme from 'vitepress/dist/client/theme-default'
+import DefaultTheme from 'vitepress/theme'
 import './tailwind.postcss'
 
-export default {
-  ...DefaultTheme,
-}
+export default DefaultTheme

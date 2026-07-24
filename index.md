@@ -1,5 +1,5 @@
 ---
-customLayout: true
+layout: page
 sidebar: false
 ---
 
