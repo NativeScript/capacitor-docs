@@ -13,25 +13,23 @@ import HomeComponent from './.vitepress/theme/HomeComponent.vue'
   <template v-slot:box1>
 
 ```ts
-import { Zip } from "@nativescript/zip";
-import { notifyEvent } from "@nativescript/capacitor/bridge";
+import { iosRootViewController } from '@nativescript/capacitor/bridge';
 
-interface ZipOptions {
-    directory: string,
-    archive: string
-}
-
-native.fileZip = function (options: ZipOptions) {
-  const { directory, archive } = options;
-  Zip.zip({
-    directory,
-    archive,
-    onProgress: (progress) => {
-      notifyEvent('zipProgress', progress);
-    },
-  }).then((filePath) => {
-    notifyEvent('zipComplete', filePath);
-  });
+native.openNativeModalView = () => {
+  if (native.isAndroid) {
+    const builder = new android.app.AlertDialog.Builder(
+      native.androidCapacitorActivity
+    );
+    builder.setTitle('Hello from NativeScript 🚀');
+    builder.setPositiveButton('Close', null);
+    builder.show();
+    return;
+  }
+  const vc = UIViewController.alloc().init();
+  vc.view.backgroundColor = UIColor.systemIndigoColor;
+  iosRootViewController().presentViewControllerAnimatedCompletion(
+    vc, true, () => console.log('presented!')
+  );
 };
 ```
 
@@ -43,15 +41,15 @@ native.fileZip = function (options: ZipOptions) {
 import { native } from '@nativescript/capacitor';
 
 export class ExploreContainerComponent {
-  fileZip() {
-    native.onEvent('zipComplete', (filePath: string) => {
-      console.log('zip created at:', filePath);
-    });
-      
-    native.fileZip({
-      directory: 'assets',
-      archive: 'assets.zip'
-    });
+  async showNative() {
+    // any platform API, directly from your web code
+    const version = native.isAndroid
+      ? await native.android.os.Build.MODEL.get
+      : await native.UIDevice.currentDevice.systemVersion.get;
+    console.log('running on', version);
+
+    // or your own native helpers, written in TypeScript
+    native.openNativeModalView();
   }
 }
 ```

@@ -3,6 +3,12 @@
     <div class="container mx-auto pt-32 pb-32">
       <!-- <div class="grid grid-cols-2 gap-20"> -->
       <div class="lg:py-20 text-center">
+        <a
+          href="/migration-guide-v5-v8"
+          class="inline-block mb-8 rounded-full bg-blue-100 text-blue-700 px-4 py-1.5 text-sm font-medium hover:bg-blue-200 hover:no-underline"
+        >
+          ✨ v8 is here — SPM-first iOS, zero-touch Android
+        </a>
         <h1
           class="animate-move-bg bg-gradient-to-r from-fuchsia-400 via-[#53b9ff] to-fuchsia-400 bg-[length:400%] bg-clip-text text-5xl md:text-8xl font-bold text-transparent"
         >
@@ -48,12 +54,12 @@
             <div class="pl-6 text-sm text-gray-300">
               ./src/<span class="text-cyan-400">nativescript</span>/<span
                 class="font-bold text-white"
-                >zip.ts</span
+                >modal.ts</span
               >
             </div>
           </div>
           <div
-            class="-mt-3 overflow-y-auto font-mono text-sm leading-6 text-gray-300 lg:text-base"
+            class="overflow-y-auto font-mono text-sm leading-6 text-gray-300 lg:text-base"
           >
             <div
               class="text-xs text-white"
@@ -82,7 +88,7 @@
             </div>
           </div>
           <div
-            class="-mt-3 overflow-y-auto font-mono text-sm leading-6 text-gray-300 lg:text-base"
+            class="overflow-y-auto font-mono text-sm leading-6 text-gray-300 lg:text-base"
           >
             <div
               class="text-xs text-white"
@@ -117,7 +123,7 @@
   margin: 0;
   /* VitePress 1.x scopes code-block padding to .vp-doc pages; this page uses
      layout: page, so provide the block padding ourselves */
-  padding: 0.75rem 1.5rem 1.25rem;
+  padding: 1.25rem 1.5rem 1.5rem;
   border-radius: 0;
   background-color: transparent;
   overflow-x: auto;
