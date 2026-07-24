@@ -7,7 +7,7 @@
           href="/migration-guide-v5-v8"
           class="inline-block mb-8 rounded-full bg-blue-100 text-blue-700 px-4 py-1.5 text-sm font-medium hover:bg-blue-200 hover:no-underline"
         >
-          ✨ v8 is here — SPM-first iOS, zero-touch Android
+          ✨ v8 is here - SPM-first iOS, zero-touch Android
         </a>
         <h1
           class="animate-move-bg bg-gradient-to-r from-fuchsia-400 via-[#53b9ff] to-fuchsia-400 bg-[length:400%] bg-clip-text text-5xl md:text-8xl font-bold text-transparent"

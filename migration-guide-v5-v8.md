@@ -2,8 +2,8 @@
 
 v8 is a ground-up rework of both platform integrations, and **nothing touches your native projects anymore**:
 
-- **iOS**: the NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) through Capacitor's own SPM plugin flow — no CocoaPods, no Podfile, no AppDelegate edits, no build phases, no custom linker. Metadata ships inside the runtime framework.
-- **Android**: the plugin is a self-contained Gradle module — no `Application` replacement, no manifest edits, no `build.gradle` grafting, no binaries copied into your repo, and **no Static Binding Generator** (the runtime generates bindings dynamically). `nscap build` fetches the runtime once and generates metadata automatically.
+- **iOS**: the NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) through Capacitor's own SPM plugin flow (no CocoaPods, no Podfile, no AppDelegate edits, no build phases, no custom linker). Metadata ships inside the runtime framework.
+- **Android**: the plugin is a self-contained Gradle module meaning no `Application` replacement, no manifest edits, no `build.gradle` grafting, no binaries copied into your repo, and **no Static Binding Generator** (the runtime generates bindings dynamically). `nscap build` fetches the runtime once and generates metadata automatically.
 
 ## 1. Remove the v5 integration
 

@@ -18,7 +18,7 @@ It is structured as follows:
    └─ index.ts
 ```
 
-Unlike v5, there is **no nested npm project** — no separate `package.json`, `tsconfig.json`, or second `npm install` inside `src/nativescript`. It's just TypeScript, bundled in milliseconds by `nscap build`.
+Unlike v5, there is **no nested npm project**, no separate `package.json`, `tsconfig.json`, or second `npm install` inside `src/nativescript`. It's just TypeScript, bundled in milliseconds by `nscap build`.
 
 The `index.ts` alongside the `examples` folder is a great example of how you can scale out native platform features by creating your own organization of additional native helper methods to import and bundle together for your app's usage.
 

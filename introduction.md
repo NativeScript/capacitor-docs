@@ -4,7 +4,7 @@
 
 :::tip Note
 
-**8.x** targets **Capacitor 8** on **iOS and Android** — installation is fully additive, with zero modifications to your Xcode or Android projects. For CocoaPods-based apps, use `@nativescript/capacitor@5`.
+**8.x** targets **Capacitor 8** on **iOS and Android**. Installation is fully additive, with zero modifications to your Xcode or Android projects. For CocoaPods-based apps, use `@nativescript/capacitor@5`.
 
 :::
 

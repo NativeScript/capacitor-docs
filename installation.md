@@ -8,9 +8,7 @@ Using CocoaPods? Use `@nativescript/capacitor@5` and the v5 docs.
 
 :::
 
-There is no project surgery in 8.x — on either platform:
-
-- **iOS**: no CocoaPods, no Podfile edits, no AppDelegate changes, no Xcode build phases, no linker flags. The NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) when Capacitor syncs the plugin, and platform API metadata ships inside the runtime's framework — zero configuration.
+- **iOS**: no CocoaPods, no Podfile edits, no AppDelegate changes, no Xcode build phases, no linker flags. The NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) when Capacitor syncs the plugin, and platform API metadata ships inside the runtime's framework with zero configuration.
 - **Android**: no `Application` replacement, no manifest edits, no `build.gradle` grafting, nothing copied into your repo. The plugin is a self-contained Gradle module that Capacitor wires up on sync; `nscap build` fetches the runtime once (cached) and generates platform metadata automatically.
 
 ## 1. Start from a Capacitor app
