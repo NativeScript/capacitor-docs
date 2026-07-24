@@ -11,33 +11,39 @@ import "./power-mode";
 
 ### `src/nativescript/power-mode.ts`:
 
-```typescript
-import {
-  androidBroadcastReceiverRegister,
-  androidBroadcastReceiverUnRegister,
-} from "@nativescript/capacitor/bridge";
+On Android this extends `BroadcastReceiver` directly from TypeScript — in 8.x the runtime generates the binding dynamically, no build step required. *Validated on Android API 35 (emulator): toggling battery saver fires the callback.*
 
+```typescript
 let isListening = false;
 let clientCallback: (isEnabled: boolean) => void;
 let observer;
+let receiver;
 
 native.togglePowerModeListener = (callback?: (isEnabled: boolean) => void) => {
   clientCallback = callback;
   if (native.isAndroid) {
-    const action = "android.os.action.POWER_SAVE_MODE_CHANGED";
+    const context = native.androidCapacitorActivity;
     if (!isListening) {
       isListening = true;
-      androidBroadcastReceiverRegister(action, (context, intent) => {
-        const manager: android.os.PowerManager = native.androidCapacitorActivity.getSystemService(
-          android.content.Context.POWER_SERVICE
-        );
-        if (manager && clientCallback) {
-          clientCallback(manager.isPowerSaveMode());
-        }
+      const Receiver = android.content.BroadcastReceiver.extend({
+        onReceive(ctx, intent) {
+          const manager: android.os.PowerManager = ctx.getSystemService(
+            android.content.Context.POWER_SERVICE
+          );
+          if (manager && clientCallback) {
+            clientCallback(manager.isPowerSaveMode());
+          }
+        },
       });
+      receiver = new Receiver();
+      context.registerReceiver(
+        receiver,
+        new android.content.IntentFilter("android.os.action.POWER_SAVE_MODE_CHANGED")
+      );
     } else {
       isListening = false;
-      androidBroadcastReceiverUnRegister(action);
+      context.unregisterReceiver(receiver);
+      receiver = null;
     }
   } else {
     if (!isListening) {

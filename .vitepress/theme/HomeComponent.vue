@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-br from-sky-50 to-slate-50 min-h-screen">
+  <div class="nsc-home bg-gradient-to-br from-sky-50 to-slate-50 min-h-screen">
     <div class="container mx-auto pt-32 pb-32">
       <!-- <div class="grid grid-cols-2 gap-20"> -->
       <div class="lg:py-20 text-center">
@@ -107,3 +107,25 @@
     </div>
   </div>
 </template>
+
+<style>
+/* Code windows on the home page are always dark, regardless of site theme:
+   force the shiki dark-variant token colors (VitePress dual-theme spans carry
+   them as --shiki-dark) and strip the block chrome that doesn't fit the
+   custom window design. */
+.nsc-home div[class*='language-'] {
+  margin: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+.nsc-home div[class*='language-'] pre {
+  background-color: transparent !important;
+}
+.nsc-home div[class*='language-'] code span {
+  color: var(--shiki-dark, #e1e4e8) !important;
+}
+.nsc-home div[class*='language-'] .lang,
+.nsc-home div[class*='language-'] .copy {
+  display: none;
+}
+</style>

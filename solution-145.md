@@ -1,36 +1,13 @@
 # Zip
 
-:::warning v5 solution
-
-This walkthrough was written for **v5 (CocoaPods)** — it edits the Podfile, which doesn't exist in 8.x SPM apps. An 8.x take on NativeScript plugins with native dependencies (SPM packages + `nscap metadata`) is coming with a later 8.x release.
-
-:::
-
 https://github.com/capacitor-community/proposals/issues/145
 
-This example uses [@nativescript/zip](https://docs.nativescript.org/plugins/zip.html)
+In 8.x this needs **no plugins, no pods, no custom metadata** — both platforms can create zip archives with nothing but their standard APIs, which are already in the default metadata:
 
-Open `ios/App/Podfile` and let Capacitor's iOS build use `SSZipArchive` as well:
+- **iOS**: `NSFileCoordinator` with the `ForUploading` reading option hands you a zip of any folder (the same mechanism Files/Mail use for folder uploads).
+- **Android**: `java.util.zip.ZipOutputStream`, straight from the JDK.
 
-```ts
-def capacitor_pods
-  pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
-  pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
-  pod 'NativescriptCapacitor', :path => '../../node_modules/@nativescript/capacitor'
-end
-
-target 'App' do
-  capacitor_pods
-  # Add your Pods here
-
-  # NativeScript
-  pod 'NativeScriptSDK', '~> 8.4.2'
-  pod 'NativeScriptUI'
-
-  # Zip/Unzip
-  pod 'SSZipArchive', '~> 2.4.3'
-end
-```
+*Validated on iOS 26.5 (simulator) and Android API 35 (emulator).*
 
 ### `src/nativescript/index.ts`:
 
@@ -42,38 +19,76 @@ import "./zip";
 ### `src/nativescript/zip.ts`:
 
 ```typescript
-import { Zip } from "@nativescript/zip";
-import { path, knownFolders } from "@nativescript/core";
 import { notifyEvent } from "@nativescript/capacitor/bridge";
-import { ZipOptions } from "../../native-custom";
+import { ZipOptions } from "../native-custom";
 
-native.fileZip = function (options: ZipOptions) {
-  const directory = path.join(knownFolders.documents().path, options.directory);
-  const archive = path.join(knownFolders.temp().path, options.archive);
+function zipFolderIOS(directory: string, archive: string) {
+  const fileManager = NSFileManager.defaultManager;
+  const coordinator = NSFileCoordinator.alloc().init();
+  const errorRef = new interop.Reference();
+  coordinator.coordinateReadingItemAtURLOptionsErrorByAccessor(
+    NSURL.fileURLWithPath(directory),
+    NSFileCoordinatorReadingOptions.ForUploading,
+    errorRef,
+    (zipUrl) => {
+      if (fileManager.fileExistsAtPath(archive)) {
+        fileManager.removeItemAtPathError(archive);
+      }
+      fileManager.copyItemAtPathToPathError(zipUrl.path, archive);
+      notifyEvent("zipComplete", archive);
+    }
+  );
+}
 
-  if (options.unzip) {
-    Zip.unzip({
-      directory,
-      archive,
-      onProgress: (progress) => {
-        notifyEvent("unzipProgress", progress);
-      },
-    }).then((filePath) => {
-      notifyEvent("unzipComplete", filePath);
-    });
+function zipFolderAndroid(directory: string, archive: string) {
+  const dir = new java.io.File(directory);
+  const outFile = new java.io.File(archive);
+  const zos = new java.util.zip.ZipOutputStream(
+    new java.io.FileOutputStream(outFile)
+  );
+  const files = dir.listFiles();
+  for (let i = 0; i < files.length; i++) {
+    zos.putNextEntry(new java.util.zip.ZipEntry(files[i].getName()));
+    const fis = new java.io.FileInputStream(files[i]);
+    const buffer = Array.create("byte", 4096);
+    let len: number;
+    while ((len = fis.read(buffer)) > 0) {
+      zos.write(buffer, 0, len);
+    }
+    fis.close();
+    zos.closeEntry();
+  }
+  zos.close();
+  notifyEvent("zipComplete", archive);
+}
+
+native.fileZip = (options: ZipOptions) => {
+  if (native.isAndroid) {
+    const context = native.androidCapacitorActivity;
+    const directory = new java.io.File(context.getFilesDir(), options.directory)
+      .getAbsolutePath();
+    const archive = new java.io.File(context.getCacheDir(), options.archive)
+      .getAbsolutePath();
+    zipFolderAndroid(directory, archive);
   } else {
-    Zip.zip({
-      directory,
-      archive,
-      onProgress: (progress) => {
-        notifyEvent("zipProgress", progress);
-      },
-    }).then((filePath) => {
-      notifyEvent("zipComplete", filePath);
-    });
+    const documents = NSSearchPathForDirectoriesInDomains(
+      NSSearchPathDirectory.DocumentDirectory,
+      NSSearchPathDomainMask.UserDomainMask,
+      true
+    ).firstObject;
+    zipFolderIOS(
+      documents + "/" + options.directory,
+      NSTemporaryDirectory() + options.archive
+    );
   }
 };
 ```
+
+:::tip Unzipping?
+
+Android can also *extract* with the same zero-dependency approach (`java.util.zip.ZipInputStream`). iOS has no public unzip API — that use case lands with NativeScript plugin support in a later 8.x release.
+
+:::
 
 ## Usage in your Ionic web codebase:
 
@@ -87,8 +102,7 @@ Provide strong type checking for this new helper by modifying the following:
  */
 export interface ZipOptions {
   directory: string;
-  archive?: string;
-  unzip?: boolean;
+  archive: string;
 }
 
 export interface nativeCustom {
@@ -102,10 +116,7 @@ Now you can use it anywhere in your Ionic web codebase with the following:
 import { native } from "@nativescript/capacitor";
 
 native.onEvent("zipComplete", (filepath) => {
-  console.log("ionic zip complete:", filepath);
-});
-native.onEvent("zipProgress", (progress) => {
-  console.log("ionic zip progress:", progress);
+  console.log("zip complete:", filepath);
 });
 
 native.fileZip({

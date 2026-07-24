@@ -8,6 +8,8 @@ export default defineConfig({
 
   cleanUrls: true,
   lastUpdated: true,
+  // the site's styling is light-designed (matching docs.nativescript.org)
+  appearance: false,
 
   head: [
     ['link', { rel: 'stylesheet', href: '/styles.css' }],
@@ -41,7 +43,9 @@ export default defineConfig({
   },
 
   themeConfig: {
+    // the logo image carries the full wordmark; don't repeat the title as text
     logo: '/assets/images/nativescript-for-capacitor.png',
+    siteTitle: false,
 
     editLink: {
       pattern: 'https://github.com/NativeScript/capacitor-docs/edit/main/:path',
