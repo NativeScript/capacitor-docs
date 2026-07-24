@@ -45,14 +45,14 @@ The bundle is rebuilt automatically on every `npx cap copy` / `npx cap sync` via
 
 ## SDK typings and extra metadata
 
-Two optional power-ups, generated against **your** installed Xcode SDK:
+Two optional power-ups:
 
 ```bash
 npx nscap typings     # full iOS SDK TypeScript declarations → src/nativescript/typings/
-npx nscap metadata    # custom platform metadata, e.g. to expose extra frameworks
+npx nscap metadata    # custom iOS metadata, e.g. to expose extra frameworks
 ```
 
-By default you don't need `nscap metadata` at all — the standard iOS SDK surface ships inside the runtime's framework. Generate custom metadata only when you want `native.*` access to API surface beyond the standard SDK; declare extra search paths in `src/nativescript/metadata.json` (`frameworkPaths`, `headerPaths`).
+By default you don't need `nscap metadata` at all — the standard iOS SDK surface ships inside the runtime's framework, and **Android metadata is generated automatically** by `nscap build` (standard SDK + runtime, cached). Generate custom iOS metadata only when you want `native.*` access to API surface beyond the standard SDK; declare extra search paths in `src/nativescript/metadata.json` (`frameworkPaths`, `headerPaths`).
 
 ## Debugging
 

@@ -11,6 +11,12 @@
 
 Bundles just your NativeScript changes from `src/nativescript`. It is built into a `nativescript` folder inside your `webDir` as specified in your `capacitor.config.json` or `capacitor.config.ts`. Bundling uses esbuild and completes in milliseconds.
 
+When an Android platform is present, the same command also keeps the Android side ready: it fetches the NativeScript Android runtime once (cached) into the plugin module and generates platform metadata automatically — you'll see it in the output:
+
+```
+⚡ nscap: android: plugin module ready (runtime + metadata)
+```
+
 ### `capacitor:copy:before`
 
 This is a [Capacitor CLI hook](https://capacitorjs.com/docs/cli/hooks): it runs automatically **before every** `npx cap copy` and `npx cap sync`. In practice you never have to think about the NativeScript build at all — your regular Capacitor workflow keeps everything in sync:

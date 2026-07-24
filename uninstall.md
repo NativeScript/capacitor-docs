@@ -5,7 +5,7 @@ Removing NativeScript from a Capacitor 8.x app is just removing files — nothin
 1. `npm uninstall @nativescript/capacitor`
 2. Delete `src/nativescript/` and `src/native-custom.d.ts` (or archive them for later)
 3. Remove the `build:nativescript` and `capacitor:copy:before` scripts from your `package.json`
-4. `npx cap sync ios`
+4. `npx cap sync`
 
 :::tip v5 note
 

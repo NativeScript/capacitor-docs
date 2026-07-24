@@ -1,12 +1,9 @@
 # Migrating v5 to v8
 
-v8 is a ground-up rework of the iOS integration: the NativeScript runtime now arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) through Capacitor's own SPM plugin flow, and **nothing touches your Xcode project anymore** — no CocoaPods, no Podfile, no AppDelegate edits, no build phases, no custom linker. Metadata ships inside the runtime framework, so there's no generation step unless you opt into custom metadata.
+v8 is a ground-up rework of both platform integrations, and **nothing touches your native projects anymore**:
 
-:::warning iOS-only for now
-
-v8 currently supports iOS only. If you need Android, stay on v5 until Android lands in a later 8.x release.
-
-:::
+- **iOS**: the NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) through Capacitor's own SPM plugin flow — no CocoaPods, no Podfile, no AppDelegate edits, no build phases, no custom linker. Metadata ships inside the runtime framework.
+- **Android**: the plugin is a self-contained Gradle module — no `Application` replacement, no manifest edits, no `build.gradle` grafting, no binaries copied into your repo, and **no Static Binding Generator** (the runtime generates bindings dynamically). `nscap build` fetches the runtime once and generates metadata automatically.
 
 ## 1. Remove the v5 integration
 
@@ -57,6 +54,8 @@ const MyDelegate = NSObject.extend(
 );
 ```
 
+On Android, `SomeClass.extend({...})` and `new SomeInterface({...})` work at runtime via the runtime's dynamic binding generation — no build step, no SBG.
+
 - **Deprecated iOS APIs**: v5-era examples used `presentModalViewControllerAnimated`, which no longer exists on modern iOS. Use:
 
 ```ts
@@ -65,7 +64,7 @@ iosRootViewController().presentViewControllerAnimatedCompletion(vc, true, () => 
 });
 ```
 
-- **Bridge helpers**: `iosRootViewController`, `iosAddNotificationObserver`, `iosRemoveNotificationObserver`, `runOnUIThread`, and the event API (`notifyEvent` / `onEvent` / `removeEvent`) all carry over as-is. The Android-only helpers (`androidCreateDialog`, `androidBroadcastReceiverRegister`) return with Android support.
+- **Bridge helpers**: `iosRootViewController`, `iosAddNotificationObserver`, `iosRemoveNotificationObserver`, `runOnUIThread`, the event API (`notifyEvent` / `onEvent` / `removeEvent`), and `global.androidCapacitorActivity` all carry over as-is. The v5 convenience wrappers `androidCreateDialog` and `androidBroadcastReceiverRegister` are not in the rc yet — use direct platform APIs meanwhile (e.g. `android.app.AlertDialog.Builder`, as the scaffolded modal example shows).
 
 ## 5. Update your scripts
 
@@ -82,8 +81,8 @@ Your web `build` script goes back to being just the web build. The v5 extras are
 
 ```bash
 npm run build
-npx cap sync ios
-npx cap run ios
+npx cap sync
+npx cap run ios     # and/or: npx cap run android
 ```
 
-First build downloads the runtime via SPM; after that you're on the normal fast path.
+The first iOS build downloads the runtime via SPM, and the first `nscap build` with an Android platform fetches the Android runtime; after that you're on the normal fast path.

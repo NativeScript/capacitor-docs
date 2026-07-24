@@ -4,7 +4,7 @@ The NativeScript bundle rebuilds automatically as part of your normal Capacitor 
 
 ```bash
 # after editing anything in src/nativescript
-npx cap run ios
+npx cap run ios     # or: npx cap run android
 ```
 
 That's it: `cap run` syncs (rebuilding your NativeScript bundle via the hook), builds, and deploys.

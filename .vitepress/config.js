@@ -39,7 +39,7 @@ module.exports = {
 
     nav: [
       {
-        text: "v8.0.0-rc.0",
+        text: "v8.0.0-rc.1",
         link: "#",
         activeMatch: '^nomatch$'
       },

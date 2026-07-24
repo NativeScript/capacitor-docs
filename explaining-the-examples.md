@@ -4,14 +4,20 @@ The installation includes 1 simple example to give you ideas of possibilities.
 
 ### `examples/modal.ts`
 
-An example showing how to do some native ui blending to open a purely native platform modal. This is exactly what `nscap init` scaffolds:
+An example showing how to do some native ui blending to open a purely native platform modal on **both platforms**. This is exactly what `nscap init` scaffolds:
 
 ```typescript
 import { iosRootViewController } from '@nativescript/capacitor/bridge';
 
 native.openNativeModalView = () => {
   if (native.isAndroid) {
-    console.log('openNativeModalView: Android lands in a later 8.x release');
+    const activity = (<any>global).androidCapacitorActivity;
+    const builder = new android.app.AlertDialog.Builder(activity);
+    builder.setTitle('Hello from NativeScript 🚀');
+    builder.setMessage('A fully native Android dialog, built from TypeScript.');
+    builder.setPositiveButton('Close', null);
+    builder.show();
+    console.log('NSCAP_MODAL presented');
     return;
   }
   const vc = UIViewController.alloc().init();
@@ -30,7 +36,7 @@ native.openNativeModalView = () => {
 };
 ```
 
-Everything in the iOS branch is a direct platform API call — `UIViewController`, `UILabel`, `CGRectMake` — exactly as you'd find them in the [Apple Developer Docs](https://developer.apple.com/documentation/uikit). The completion callback demonstrates callbacks marshalling naturally across the bridge.
+Everything is a direct platform API call — `UIViewController`, `UILabel`, `CGRectMake` on iOS exactly as in the [Apple Developer Docs](https://developer.apple.com/documentation/uikit); `android.app.AlertDialog.Builder` on Android exactly as in the [Android Developer Docs](https://developer.android.com/reference/android/app/AlertDialog.Builder). No subclassing, no bindings — and the iOS completion callback demonstrates callbacks marshalling naturally across the bridge.
 
 Usage in your web codebase:
 

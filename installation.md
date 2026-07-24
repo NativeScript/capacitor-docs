@@ -2,20 +2,24 @@
 
 :::tip Version note
 
-**8.x** is SPM-first and works with **Capacitor 8** apps (or Capacitor 6/7 apps using [SPM mode](https://capacitorjs.com/docs/ios/spm)). This release is **iOS-only**; Android support returns in a later 8.x release.
+**8.x** works with **Capacitor 8** apps on **iOS and Android** (on iOS, Capacitor 6/7 apps must use [SPM mode](https://capacitorjs.com/docs/ios/spm)).
 
-Using CocoaPods or need Android today? Use `@nativescript/capacitor@5` and the v5 docs.
+Using CocoaPods? Use `@nativescript/capacitor@5` and the v5 docs.
 
 :::
 
-There is no project surgery in 8.x: no CocoaPods, no Podfile edits, no AppDelegate changes, no Xcode build phases, no linker flags. The NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) when Capacitor syncs the plugin, and platform API metadata ships inside the runtime's framework — zero configuration.
+There is no project surgery in 8.x — on either platform:
+
+- **iOS**: no CocoaPods, no Podfile edits, no AppDelegate changes, no Xcode build phases, no linker flags. The NativeScript runtime arrives as a Swift Package ([NativeScript/ios-spm](https://github.com/NativeScript/ios-spm)) when Capacitor syncs the plugin, and platform API metadata ships inside the runtime's framework — zero configuration.
+- **Android**: no `Application` replacement, no manifest edits, no `build.gradle` grafting, nothing copied into your repo. The plugin is a self-contained Gradle module that Capacitor wires up on sync; `nscap build` fetches the runtime once (cached) and generates platform metadata automatically.
 
 ## 1. Start from a Capacitor app
 
-Follow the [Ionic](https://ionicframework.com/getting-started) or [Capacitor](https://capacitorjs.com/docs/getting-started) getting started guide, and make sure the iOS platform is added:
+Follow the [Ionic](https://ionicframework.com/getting-started) or [Capacitor](https://capacitorjs.com/docs/getting-started) getting started guide, and make sure your platforms are added:
 
 ```bash
 npx cap add ios
+npx cap add android
 ```
 
 ## 2. Install and initialize
@@ -35,8 +39,8 @@ npx nscap init
 
 ```bash
 npm run build       # build your web assets as usual (any bundler)
-npx cap sync ios
-npx cap run ios
+npx cap sync
+npx cap run ios     # and/or: npx cap run android
 ```
 
 That's the entire setup. At app launch you'll see the example's greeting in the native console, and from your web code you can immediately do:
@@ -50,8 +54,9 @@ native.openNativeModalView(); // the scaffolded example helper
 
 ## Requirements
 
-- Capacitor 8 iOS app (SPM is the Capacitor 8 default) — or Capacitor 6/7 with [SPM mode](https://capacitorjs.com/docs/ios/spm)
+- Capacitor 8 app (on iOS, SPM is the Capacitor 8 default — or Capacitor 6/7 with [SPM mode](https://capacitorjs.com/docs/ios/spm))
 - iOS 15+, Xcode with the iOS SDK
+- Android minSdk 23+, Android SDK, JDK 17+
 - Node 18+
 
 ## Troubleshooting
@@ -62,13 +67,19 @@ If the app launches to a blank screen, your web assets were likely never built �
 
 ### Where do my NativeScript `console.log`s go?
 
-To the native system log, not the webview console. See them in the Xcode console, or:
+To the native system log, not the webview console. On iOS, see them in the Xcode console, or:
 
 ```bash
-# simulator
+# iOS simulator
 xcrun simctl spawn booted log stream --predicate 'process == "App"'
+```
+
+On Android they appear in logcat under the `JS` tag:
+
+```bash
+adb logcat -s JS
 ```
 
 ### First build is slow
 
-The very first Xcode build downloads the NativeScript runtime binaries through Swift Package Manager. Subsequent builds use the local SPM cache and are fast.
+The very first iOS build downloads the NativeScript runtime binaries through Swift Package Manager, and the first `nscap build` with an Android platform fetches the Android runtime once. Both are cached; subsequent builds are fast.
