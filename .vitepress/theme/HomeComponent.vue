@@ -115,11 +115,19 @@
    custom window design. */
 .nsc-home div[class*='language-'] {
   margin: 0;
+  /* VitePress 1.x scopes code-block padding to .vp-doc pages; this page uses
+     layout: page, so provide the block padding ourselves */
+  padding: 0.75rem 1.5rem 1.25rem;
   border-radius: 0;
   background-color: transparent;
+  overflow-x: auto;
 }
 .nsc-home div[class*='language-'] pre {
+  margin: 0;
   background-color: transparent !important;
+}
+.nsc-home div[class*='language-'] code {
+  display: block;
 }
 .nsc-home div[class*='language-'] code span {
   color: var(--shiki-dark, #e1e4e8) !important;

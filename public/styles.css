@@ -8,9 +8,12 @@
   --vp-c-brand-soft: rgba(101, 173, 241, 0.14);
 }
 
-/* The logo image carries the full wordmark; give it a little more presence */
+/* The logo image carries the full wordmark (774×100): keep its aspect ratio
+   and size it to fit the sidebar-width title area on docs pages */
 .VPNavBarTitle .logo {
-  height: 1.8rem;
+  height: 1.65rem;
+  width: auto;
+  max-width: none;
 }
 
 /** Custom blocks (tip/warning/danger) — carried over from the original design */
