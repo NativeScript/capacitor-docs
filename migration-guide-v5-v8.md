@@ -29,7 +29,7 @@ npx cap spm-migration-assistant
 ## 3. Install v8
 
 ```bash
-npm install @nativescript/capacitor@next
+npm install @nativescript/capacitor
 npx nscap init
 ```
 
@@ -39,7 +39,7 @@ npx nscap init
 
 Most native TypeScript carries over unchanged. Things to check:
 
-- **Nested project files are gone.** Delete `src/nativescript/package.json`, `tsconfig.json`, and `references.d.ts` — v8 bundles with esbuild directly, and there is no second `npm install`. If you imported from `@nativescript/core`, note that core is not part of the v8 rc bundle.
+- **Nested project files are gone.** Delete `src/nativescript/package.json`, `tsconfig.json`, and `references.d.ts` — v8 bundles with esbuild directly, and there is no second `npm install`. If you imported from `@nativescript/core`, note that core is not part of the 8.0.0 bundle (planned for a later 8.x release).
 - **`@NativeClass` decorated classes**: the v8 bundler (esbuild) does not run the webpack NativeClass transformer. On iOS, replace decorated `class X extends NSObject` with the runtime's `NSObject.extend()` API:
 
 ```ts
@@ -64,7 +64,7 @@ iosRootViewController().presentViewControllerAnimatedCompletion(vc, true, () => 
 });
 ```
 
-- **Bridge helpers**: `iosRootViewController`, `iosAddNotificationObserver`, `iosRemoveNotificationObserver`, `runOnUIThread`, the event API (`notifyEvent` / `onEvent` / `removeEvent`), and `global.androidCapacitorActivity` all carry over as-is. The v5 convenience wrappers `androidCreateDialog` and `androidBroadcastReceiverRegister` are not in the rc yet — use direct platform APIs meanwhile (e.g. `android.app.AlertDialog.Builder`, as the scaffolded modal example shows).
+- **Bridge helpers**: `iosRootViewController`, `iosAddNotificationObserver`, `iosRemoveNotificationObserver`, `runOnUIThread`, the event API (`notifyEvent` / `onEvent` / `removeEvent`), and `global.androidCapacitorActivity` all carry over as-is. The v5 convenience wrappers `androidCreateDialog` and `androidBroadcastReceiverRegister` are not in 8.0.0 — use direct platform APIs instead (e.g. `android.app.AlertDialog.Builder`, as the scaffolded modal example shows).
 
 ## 5. Update your scripts
 

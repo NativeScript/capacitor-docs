@@ -60,7 +60,7 @@ export default defineConfig({
 
     nav: [
       {
-        text: 'v8.0.0-rc.1',
+        text: 'v8.0.0',
         link: '#',
         activeMatch: '^nomatch$',
       },
